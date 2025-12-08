@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Heart Project - Izayah Morris</title>
+    <style>
+        :root {
+            --color-primary: #2d5a78;
+            --color-primary-hover: #1e3f52;
+            --color-secondary: #50a4a0;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+            --color-bg: #f9fafb;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+        nav {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+        .project-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border);
+        }
+        .section {
+            margin-bottom: 3rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-light);
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .column {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+        .column h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .spec-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+        .spec-card h4 {
+            color: var(--color-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .results-box {
+            background-color: var(--color-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-secondary);
+            margin-bottom: 2rem;
+        }
+        .results-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+        .lesson-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+        }
+        .lesson-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">My Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 2rem;">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+    </div>
+
+    <section class="project-hero">
+        <div class="hero-content">
+            <h1>Personalized LED Heart Wall Hang</h1>
+            <p class="project-meta">A carved wooden heart with integrated programmable RGB LED lighting</p>
+            <div class="project-tags">
+                <span class="tag">CNC Machining</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">3D Printing</span>
+                <span class="tag">Electronics</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <img src="heart_design.jpg" alt="Completed LED Heart Project" class="hero-image">
+
+        <section class="section">
+            <h2 class="section-title">Project Overview</h2>
+            <p>This project combined traditional woodworking with modern electronics to create a personalized Christmas gift. The design features a carved wooden heart with integrated WS2812B RGB LED lighting controlled by an Arduino microcontroller, allowing for multiple programmable lighting animations.</p>
+            <p><strong>Completion Date:</strong> December 2025</p>
+            <p><strong>Purpose:</strong> Create a unique, personalized gift that demonstrates proficiency in CAD design, CNC machining, 3D printing, and embedded electronics.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Design & Specifications</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3>Dimensions</h3>
+                    <ul>
+                        <li><strong>Heart Size:</strong> 18" × 20"</li>
+                        <li><strong>Material:</strong> Ash Wood</li>
+                        <li><strong>Depth:</strong> 3/4"</li>
+                        <li><strong>Mounting Options:</strong> Wall mount & stand</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Programmable RGB LED strip (60 pixels/meter)</li>
+                        <li>Push-button control for animation selection</li>
+                        <li>Multiple continuous rainbow effects</li>
+                        <li>3D printed bracket assembly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">CAD Modeling & Design</h2>
+            <p>The initial design was created in <strong>OnShape</strong> with multiple iterations to refine the heart shape and personalize the design. Key design considerations included:</p>
+            <ul>
+                <li>Scaling to fit within available wood plank dimensions</li>
+                <li>Creating an offset bracket system (1.5" inset) for electronics mounting</li>
+                <li>Adding assembly holes for wall mounting rings and stand support</li>
+                <li>Ensuring adequate space for LED strip placement within the heart cutout</li>
+            </ul>
+            <div class="results-box">
+                <h3>Design Challenge</h3>
+                <p>Initial design (20" × 22") exceeded standard wood blank dimensions from suppliers. Solution: Rescaled design to fit 18" × 20" section while preserving aesthetic and personalization elements.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">CNC Machining & Fabrication</h2>
+            <h3 class="section-subtitle">Design Preparation</h3>
+            <p>Design files were exported as DXF from OnShape and imported into <strong>VCarve 12.1.5</strong> for toolpath generation. Vector paths were carefully constructed and closed to ensure continuous carving profiles.</p>
+            <h3 class="section-subtitle">Tool Specifications</h3>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>V-Bit (Engraving)</h4>
+                    <p><strong>Diameter:</strong> <span class="spec-value">¼" shank</span></p>
+                    <p><strong>Angle:</strong> <span class="spec-value">60°</span></p>
+                    <p><strong>Pass Depth:</strong> <span class="spec-value">0.1875"</span></p>
+                    <p><strong>Spindle Speed:</strong> <span class="spec-value">20,000 RPM</span></p>
+                    <p><strong>Feed Rate:</strong> <span class="spec-value">60 in/min</span></p>
+                </div>
+                <div class="spec-card">
+                    <h4>End Mill (Cutting)</h4>
+                    <p><strong>Diameter:</strong> <span class="spec-value">¼"</span></p>
+                    <p><strong>Flutes:</strong> <span class="spec-value">2</span></p>
+                    <p><strong>Pass Depth:</strong> <span class="spec-value">⅛"</span></p>
+                    <p><strong>Spindle Speed:</strong> <span class="spec-value">20,000 RPM</span></p>
+                    <p><strong>Feed Rate:</strong> <span class="spec-value">240 in/min</span></p>
+                </div>
+            </div>
+            <h3 class="section-subtitle">Machining Process</h3>
+            <ol>
+                <li>Centered and secured ash wood blank (18" × 20") on ShopBot</li>
+                <li>Made initial shallow passes to verify correct centering</li>
+                <li>Engraved design details using V-bit</li>
+                <li>Cut main heart contour using end mill</li>
+                <li>Separated finished piece from scrap material</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">3D Printing & Bracket Assembly</h2>
+            <p>A custom mounting bracket was designed in <strong>OnShape</strong> and 3D printed using FDM technology. The bracket provides:</p>
+            <ul>
+                <li>Secure mounting points for LED strip assembly</li>
+                <li>Space for breadboard and Arduino microcontroller</li>
+                <li>Proper alignment for electronics within heart cutout</li>
+                <li>Tolerance optimization for component fit</li>
+            </ul>
+            <div class="results-box">
+                <h3>Design Learning</h3>
+                <p>3D printing the bracket provided valuable insight into tolerancing for assemblies. Initial prints required adjustment to achieve proper fit with electronic components. Final iteration achieved tight tolerance without binding.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Electronics & Arduino Programming</h2>
+            <h3 class="section-subtitle">Components</h3>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Microcontroller</h4>
+                    <p>Arduino (ATmega328P)</p>
+                </div>
+                <div class="spec-card">
+                    <h4>LED Strip</h4>
+                    <p>WS2812B (60 pixels/meter)</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Power Smoothing</h4>
+                    <p>1000µF Capacitor</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Data Protection</h4>
+                    <p>470Ω Resistor</p>
+                </div>
+            </div>
+            <h3 class="section-subtitle">Circuit Design</h3>
+            <p>The circuit was implemented on a breadboard to ensure reliable grounding and power distribution:</p>
+            <ul>
+                <li>1000µF capacitor connected across power supply for smoothing</li>
+                <li>470Ω resistor on data line for signal protection</li>
+                <li>WS2812B LED strip connected to Arduino GPIO pin</li>
+                <li>Push-button input on Arduino pin 2 for animation control</li>
+            </ul>
+            <h3 class="section-subtitle">Features</h3>
+            <ul>
+                <li>Multiple continuous animation modes (rainbow effects, color sequences)</li>
+                <li>Button-controlled mode cycling</li>
+                <li>Adjustable pixel count for custom patterns</li>
+                <li>Smooth color transitions using Adafruit Neopixel library</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Material Sourcing</h2>
+            <div class="two-column">
+                <div class="column">
+                    <h3>Wood & Bits</h3>
+                    <ul>
+                        <li><strong>Wood:</strong> Ash from Big Red Sawmill & Firewood (Palmyra)</li>
+                        <li><strong>Reason:</strong> Better workability with CNC</li>
+                        <li><strong>Cutting Bit:</strong> Freud ¼" bit (Amazon)</li>
+                        <li><strong>Surfacing Bit:</strong> Provided by NIS makerspace</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Electronics</h3>
+                    <ul>
+                        <li><strong>Components:</strong> Engineering Design Hub (The Garage)</li>
+                        <li><strong>Capacitors & Resistors:</strong> Makerspace inventory</li>
+                        <li><strong>WS2812B LEDs:</strong> Amazon</li>
+                        <li><strong>Arduino:</strong> Makerspace</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Problems & Solutions</h2>
+            <div class="lesson-card">
+                <h4>Problem 1: Material Dimension Constraints</h4>
+                <p>Initial design (20" × 22") exceeded standard wood plank dimensions available from suppliers.</p>
+                <p><strong>Solution:</strong> Rescaled design to fit 18" × 20" section while preserving aesthetic and personalization elements. Used OnShape's flexible design approach to iterate quickly.</p>
+            </div>
+            <div class="lesson-card">
+                <h4>Problem 2: Electrical Grounding Issues</h4>
+                <p>Initial soldered connections created intermittent grounding failures, causing LED animations to cut out unexpectedly during operation.</p>
+                <p><strong>Solution:</strong> Migrated circuit to breadboard implementation, which provided better contact reliability. Easier troubleshooting and component testing. Future iterations will use better shielded cables and more robust push-button mounting.</p>
+            </div>
+            <div class="lesson-card">
+                <h4>Problem 3: Vector Path Closure in VCarve</h4>
+                <p>Multiple toolpath generation attempts failed because vector paths were not fully closed. Unclosed paths caused toolpath errors.</p>
+                <p><strong>Solution:</strong> Implemented systematic checking of all path endpoints. Manually verified intersection points to ensure continuity. Created a verification checklist before initiating machine operation.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Results & Outcomes</h2>
+            <p>Successfully created a personalized carved wooden heart (18" × 20") with integrated WS2812B LED lighting featuring multiple programmable animation sequences. The piece is suitable for display as a wall hanging or mantle decoration, with mounting options for both wall-mounted and freestanding use.</p>
+            <div class="results-box">
+                <h3>Key Achievements</h3>
+                <ul>
+                    <li>✓ Integrated multiple manufacturing disciplines successfully</li>
+                    <li>✓ Created programmable lighting system with multiple animation modes</li>
+                    <li>✓ Delivered personalized, functional art piece within makerspace constraints</li>
+                    <li>✓ Project exceeds off-the-shelf alternatives in customization and uniqueness</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Lessons Learned</h2>
+            <div class="lesson-card">
+                <h4>Early Project Initiation</h4>
+                <p>Starting fabrication work well in advance of deadlines proved essential. Unforeseen technical issues (grounding problems, vector path errors, material constraints) would have created scheduling pressure if discovered near project completion.</p>
+            </div>
+            <div class="lesson-card">
+                <h4>Electrical System Design</h4>
+                <p>Breadboarding should be considered as a primary prototyping method for circuits with grounding sensitivity. More robust mounting strategies for input devices prevent intermittent electrical failures.</p>
+            </div>
+            <div class="lesson-card">
+                <h4>Manufacturing Process Planning</h4>
+                <p>Tool path verification in software saves significant time compared to troubleshooting failed cuts on material. Systematic vector closure checking should occur before any machine operation.</p>
+            </div>
+            <div class="lesson-card">
+                <h4>Design-for-Fabrication</h4>
+                <p>Understanding material constraints early in the design phase—including standard stock dimensions and tool capabilities—prevents late-stage redesigns. Iterative CAD modeling allowed rapid adaptation when material size constraints were discovered.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Skills Developed</h2>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>CAD Design</h4>
+                    <p>OnShape modeling and design iteration under material constraints</p>
+                </div>
+                <div class="spec-card">
+                    <h4>CNC Machining</h4>
+                    <p>VCarve toolpath generation and ShopBot operation</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Electronics</h4>
+                    <p>Circuit design, breadboarding, and troubleshooting</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Programming</h4>
+                    <p>Arduino firmware modification and Adafruit library integration</p>
+                </div>
+                <div class="spec-card">
+                    <h4>3D Printing</h4>
+                    <p>Design for print and tolerance optimization</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Problem-Solving</h4>
+                    <p>Systematic troubleshooting and design iteration</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Conclusion</h2>
+            <p>This project successfully demonstrates the ability to integrate multiple manufacturing and electronics disciplines to create a personalized, functional art piece within makerspace constraints. The combination of CNC wood carving, 3D printing, and Arduino-based lighting control bridges traditional craftsmanship with modern electronics.</p>
+            <p>The finished piece serves as both a practical demonstration of fabrication techniques and a meaningful handmade gift combining technical achievement with personal significance. The project reinforced the importance of early planning, systematic problem-solving, and iterative design refinement.</p>
+            <div class="results-box">
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Document and share project process on GitHub</li>
+                    <li>Explore variations with different wood types and LED configurations</li>
+                    <li>Develop more advanced animation modes and wireless control</li>
+                    <li>Create detailed build documentation for reproducibility</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Izayah Morris. All rights reserved.</p>
+    </footer>
+</body>
+</html>
