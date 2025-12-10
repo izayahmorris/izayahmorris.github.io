@@ -1,1 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratory-Scale Wind Tunnel - Izayah Morris</title>
+    <style>
+        :root {
+            --color-primary: #2d5a78;
+            --color-primary-hover: #1e3f52;
+            --color-secondary: #50a4a0;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+            --color-bg: #f9fafb;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Back Button */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        .project-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--color-border);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-light);
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .column {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .column h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .spec-card h4 {
+            color: var(--color-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        /* Results/Outcomes */
+        .results-box {
+            background-color: var(--color-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .results-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Lessons Learned */
+        .lesson-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-light);
+        }
+
+        tr:hover {
+            background-color: rgba(80, 164, 160, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            td, th {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">My Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back Link -->
+    <div class="container" style="margin-top: 2rem;">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+    </div>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <h1>Laboratory-Scale Wind Tunnel</h1>
+            <p class="project-meta">A functioning educational wind tunnel for fluid mechanics research and aerodynamic testing</p>
+            <div class="project-tags">
+                <span class="tag">Fluid Mechanics</span>
+                <span class="tag">CAD Design</span>
+                <span class="tag">3D Printing</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Team Project</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Overview -->
+        <section class="section">
+            <h2 class="section-title">Project Overview</h2>
+            <p>This senior design project involved developing a functional laboratory-scale wind tunnel for integration into Doane University's Engineering curriculum. As part of a four-person team, I contributed to the design, fabrication, and testing of a complete wind tunnel system capable of generating controlled air velocities for aerodynamic research and educational demonstrations.</p>
+            <p><strong>Team Members:</strong> Matthew Arent, Izayah Morris, Zack Perez, Mason Zimmerman</p>
+            <p><strong>Completion Date:</strong> May 2024</p>
+            <p><strong>Purpose:</strong> Create an educational wind tunnel enabling students to conduct fluid mechanics experiments, analyze drag forces, and understand aerodynamic principles through hands-on testing and data collection.</p>
+        </section>
+
+        <!-- Design & Specifications -->
+        <section class="section">
+            <h2 class="section-title">System Specifications & Requirements</h2>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3>Performance Specifications</h3>
+                    <ul>
+                        <li><strong>Air Velocity Range:</strong> 30-60 mph (13-27 m/s)</li>
+                        <li><strong>Control Method:</strong> Variable transformer (Variac)</li>
+                        <li><strong>Power Supply:</strong> 120V, 20A standard outlet</li>
+                        <li><strong>Test Section:</strong> 6.5" × 6.5" square</li>
+                        <li><strong>Turbulence Level:</strong> Below 0.2% for quality R&D</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Key Components</h3>
+                    <ul>
+                        <li>16" diameter tube-axial fan (3284 CFM max)</li>
+                        <li>PolyWall intake and diffuser sections</li>
+                        <li>3D-printed adapter components</li>
+                        <li>Plexiglass observation windows</li>
+                        <li>Vernier force sensor & LabQuest data acquisition</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Phases -->
+        <section class="section">
+            <h2 class="section-title">Development Phases</h2>
+            
+            <h3 class="section-subtitle">Phase I: Alpha Prototype</h3>
+            <p>The initial prototype was constructed using readily available materials from the engineering lab: cardboard diffuser with wooden support frames, plexiglass test section (7" × 7") with metal angle iron bracing, and a PolyWall intake. Testing at this stage revealed critical issues with structural integrity—the cardboard diffuser collapsed under vacuum pressure, and turbulent flow developed from internal wooden frame supports.</p>
+
+            <h3 class="section-subtitle">Phase II: Beta Prototype</h3>
+            <p>Based on Alpha phase findings, we redesigned the diffuser as a cylindrical PolyWall component (9.25" to 16" diameter transition) to better match the fan shape and reduce eddy formation. The test section was optimized for the Vernier sensor setup, and 3D-printed adapters were designed to create smooth transitions between components. This prototype demonstrated significantly improved flow characteristics and yielded experimental data closely matching theoretical predictions.</p>
+
+            <h3 class="section-subtitle">Phase III: Final Prototype</h3>
+            <p>The final iteration incorporated all lessons learned from previous phases. The test section was redesigned as a three-piece assembly with precision-dimensioned components, improved plexiglass supports with dowel connections, and a dedicated testing rod assembly with refined moment arm design. The system achieved optimal flow laminarization and accurate force measurements.</p>
+        </section>
+
+        <!-- Design & CAD Modeling -->
+        <section class="section">
+            <h2 class="section-title">CAD Design & Engineering</h2>
+            
+            <p>All components were modeled in <strong>SolidWorks</strong> to ensure precise fit and assembly, with particular attention to adapter transitions and mounting points. Key design considerations included:</p>
+            
+            <ul>
+                <li>Geometric Design & Tolerancing (GD&T) for critical dimensions</li>
+                <li>Press-fit and tolerance specifications for component assembly</li>
+                <li>Laminar flow optimization through radius transitions and smooth surfaces</li>
+                <li>Structural finite element analysis for component strength validation</li>
+                <li>3D printing orientation and support structure design</li>
+            </ul>
+
+            <div class="results-box">
+                <h3>Design Achievement</h3>
+                <p>Successfully created detailed 3D assemblies of all components with GD&T specifications. Developed custom 3D-printed adapters that maintained laminar flow characteristics while seamlessly connecting circular (diffuser) to square (test section) geometries. The iterative design process allowed simulation of flow patterns before physical manufacturing, reducing material waste and development time.</p>
+            </div>
+        </section>
+
+        <!-- Manufacturing & Assembly -->
+        <section class="section">
+            <h2 class="section-title">Manufacturing & Fabrication</h2>
+            
+            <h3 class="section-subtitle">Materials & Components</h3>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Fan Assembly</h4>
+                    <p><strong>Model:</strong> <span class="spec-value">Global Industrial 16" Tube-Axial</span></p>
+                    <p><strong>CFM:</strong> <span class="spec-value">3284 max</span></p>
+                    <p><strong>Power:</strong> <span class="spec-value">720W, 6A</span></p>
+                    <p><strong>Control:</strong> <span class="spec-value">Variable Transformer (Variac)</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Intake Section</h4>
+                    <p><strong>Material:</strong> <span class="spec-value">PolyWall</span></p>
+                    <p><strong>Inlet:</strong> <span class="spec-value">24" × 24"</span></p>
+                    <p><strong>Outlet:</strong> <span class="spec-value">6" × 6"</span></p>
+                    <p><strong>Support:</strong> <span class="spec-value">Wooden frame</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Test Section</h4>
+                    <p><strong>Dimensions:</strong> <span class="spec-value">6.5" × 6.5"</span></p>
+                    <p><strong>Length:</strong> <span class="spec-value">12"</span></p>
+                    <p><strong>Windows:</strong> <span class="spec-value">Plexiglass, 4-sided</span></p>
+                    <p><strong>Frame:</strong> <span class="spec-value">3D printed ABS/PLA</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Diffuser Section</h4>
+                    <p><strong>Material:</strong> <span class="spec-value">PolyWall</span></p>
+                    <p><strong>Inlet:</strong> <span class="spec-value">9.25"</span></p>
+                    <p><strong>Outlet:</strong> <span class="spec-value">16"</span></p>
+                    <p><strong>Design:</strong> <span class="spec-value">Cylindrical cone</span></p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">Assembly Process</h3>
+            <ol>
+                <li>Fabricated PolyWall intake and diffuser using CNC cutting and hand-forming techniques</li>
+                <li>3D printed adapter components using MakerBot FDM printers with optimized orientation</li>
+                <li>Machined and assembled test section using precision-cut aluminum angle iron and dowels</li>
+                <li>Integrated plexiglass windows with pressure-fit mounting to prevent air leakage</li>
+                <li>Assembled complete system with sealed connections for airtight operation</li>
+                <li>Installed Vernier sensor mounting brackets and testing rod assembly</li>
+            </ol>
+        </section>
+
+        <!-- Testing & Analysis -->
+        <section class="section">
+            <h2 class="section-title">Testing & Data Analysis</h2>
+            
+            <h3 class="section-subtitle">Velocity Characterization</h3>
+            <p>We employed both anemometer and Pitot tube methods to characterize air velocity across the test section at various voltage settings (60V to 120V). The anemometer testing provided direct wind speed measurements, while Pitot tube testing validated results using pressure differential equations.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voltage (V)</th>
+                        <th>Velocity (m/s)</th>
+                        <th>Velocity (mph)</th>
+                        <th>Reynolds Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>60</td>
+                        <td>12.89</td>
+                        <td>28.83</td>
+                        <td>36,293</td>
+                    </tr>
+                    <tr>
+                        <td>70</td>
+                        <td>17.35</td>
+                        <td>38.82</td>
+                        <td>48,930</td>
+                    </tr>
+                    <tr>
+                        <td>80</td>
+                        <td>20.38</td>
+                        <td>45.59</td>
+                        <td>57,448</td>
+                    </tr>
+                    <tr>
+                        <td>90</td>
+                        <td>23.24</td>
+                        <td>51.98</td>
+                        <td>65,519</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>25.17</td>
+                        <td>56.30</td>
+                        <td>70,964</td>
+                    </tr>
+                    <tr>
+                        <td>110</td>
+                        <td>26.18</td>
+                        <td>58.56</td>
+                        <td>73,832</td>
+                    </tr>
+                    <tr>
+                        <td>120</td>
+                        <td>27.15</td>
+                        <td>60.74</td>
+                        <td>76,546</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="section-subtitle">Drag Force Testing</h3>
+            <p>Drag force measurements were conducted using a Vernier dual-range force sensor (0.01-50N range) with LabQuest data acquisition interface. Testing objects included a golf ball and a 3D-printed sphere to validate theoretical drag coefficient models.</p>
+
+            <p><strong>Theoretical Drag Force Equation:</strong> F<sub>D</sub> = ½ ρv²C<sub>D</sub>A</p>
+            <ul>
+                <li>ρ = Air density (1.204 kg/m³)</li>
+                <li>v = Velocity (m/s)</li>
+                <li>C<sub>D</sub> = Drag coefficient (0.47 for sphere)</li>
+                <li>A = Cross-sectional area (1.43 × 10⁻³ m²)</li>
+            </ul>
+
+            <div class="results-box">
+                <h3>Testing Results</h3>
+                <p><strong>Golf Ball:</strong> Experimental data showed an average error of 21% compared to theoretical values after curve fitting. Second-order polynomial regression achieved R² = 0.984, demonstrating excellent agreement. Dimples on the golf ball induced turbulence, resulting in lower drag forces at higher velocities compared to smooth sphere models.</p>
+                <p><strong>3D-Printed Sphere:</strong> Smooth sphere testing yielded an average error of 10.4% with R² = 0.996. The superior correlation indicates the wind tunnel's ability to accurately measure aerodynamic forces in controlled conditions.</p>
+            </div>
+        </section>
+
+        <!-- Team Contributions & Skills -->
+        <section class="section">
+            <h2 class="section-title">Key Skills & Competencies Developed</h2>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>CAD & Design</h4>
+                    <p>SolidWorks 3D modeling, GD&T dimensioning, tolerance optimization, assembly design</p>
+                </div>
+                <div class="spec-card">
+                    <h4>3D Printing</h4>
+                    <p>FDM printer operation, design for manufacturability, multi-part assembly strategy</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Fluid Mechanics</h4>
+                    <p>Reynolds number analysis, drag coefficient determination, flow visualization</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Data Analysis</h4>
+                    <p>LabQuest data acquisition, curve fitting analysis, theoretical vs. experimental comparison</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Project Management</h4>
+                    <p>Team coordination, phase gate reviews, risk assessment (FMEA), milestone tracking</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Materials & Fabrication</h4>
+                    <p>PolyWall forming, plexiglass assembly, aluminum welding/bolting, precision machining</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenges & Solutions -->
+        <section class="section">
+            <h2 class="section-title">Challenges & Design Iterations</h2>
+            
+            <div class="lesson-card">
+                <h4>Challenge 1: Structural Integrity - Diffuser Collapse</h4>
+                <p><strong>Problem:</strong> The Alpha prototype cardboard diffuser collapsed under vacuum pressure created by the fan, compromising the structural geometry and creating back pressure in the system.</p>
+                <p><strong>Solution:</strong> Redesigned the diffuser using rigid PolyWall material in a cylindrical geometry (9.25" to 16" diameter). The smooth cylindrical surface eliminated eddy formation points that plagued the cardboard frame supports. This design change improved structural integrity and flow quality simultaneously.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Challenge 2: Aerodynamic Flow Optimization</h4>
+                <p><strong>Problem:</strong> Internal wooden support frames in the Alpha diffuser created significant turbulence and eddies, causing inconsistent velocity profiles and inaccurate force measurements.</p>
+                <p><strong>Solution:</strong> Implemented smooth curved transitions between components using 3D-printed adapter pieces with rounded corners. Replaced internal bracing with external supports on the PolyWall material. These changes successfully reduced turbulence and achieved laminar flow characteristics required for accurate aerodynamic testing.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Challenge 3: Testing Rod Design - Moment Arm Issues</h4>
+                <p><strong>Problem:</strong> The initial testing rod design with four straps created a moment arm that couldn't accurately counterbalance the golf ball, producing inaccurate drag force measurements in early testing phases.</p>
+                <p><strong>Solution:</strong> Redesigned the rod assembly with improved moment arm geometry and rigid mounting. The refined design ensured zero moment about the pivot point, allowing the Vernier sensor to accurately capture drag forces without interference from gravitational moments.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Challenge 4: 3D Printer Size Constraints</h4>
+                <p><strong>Problem:</strong> Large adapter components exceeded the MakerBot 3D printer build platform dimensions, requiring creative solutions for multi-part assemblies.</p>
+                <p><strong>Solution:</strong> Designed adapters using a "half & half" strategy—printing two identical half-pieces that are glued together using cyanoacrylate (Super Glue). This approach maintained structural integrity while accommodating printer limitations. The glue joint proved sufficiently strong for the low-stress adapter application.</p>
+            </div>
+        </section>
+
+        <!-- Project Outcomes & Impact -->
+        <section class="section">
+            <h2 class="section-title">Project Outcomes & Educational Impact</h2>
+            
+            <p>The completed wind tunnel serves as a valuable resource for Doane University's engineering program, particularly supporting the EGR 310: Fluid Mechanics course. The system enables hands-on experimentation that reinforces theoretical concepts learned in the classroom.</p>
+
+            <div class="results-box">
+                <h3>Key Achievements</h3>
+                <ul>
+                    <li>✓ Designed and built a fully functional wind tunnel within project scope and budget constraints</li>
+                    <li>✓ Achieved drag force measurement accuracy within 10-21% of theoretical values</li>
+                    <li>✓ Established reliable velocity control ranging from 30-60 mph using variable transformer</li>
+                    <li>✓ Created comprehensive GD&T drawings and SolidWorks models for future reference and modifications</li>
+                    <li>✓ Developed testing procedures and data analysis methods for reproducible experiments</li>
+                    <li>✓ Produced documentation enabling continued refinement by future student teams</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Future Work -->
+        <section class="section">
+            <h2 class="section-title">Future Enhancement Opportunities</h2>
+            
+            <ul>
+                <li><strong>Smoke Generator Integration:</strong> Add visual flow paths to observe laminar and turbulent regions, enabling direct comparison with CFD simulations</li>
+                <li><strong>Sensor Refinement:</strong> Upgrade to load cells with improved resolution and calibration for more accurate low-range measurements</li>
+                <li><strong>Pitot Tube Traversal:</strong> Implement automated Pitot tube mapping across test section to characterize velocity profiles</li>
+                <li><strong>Diffuser Enhancement:</strong> Strengthen diffuser materials and incorporate toilet paper layers to further reduce turbulence</li>
+                <li><strong>Flow Visualization:</strong> Develop flow straightening guide vanes to reduce turbulence below 0.1%</li>
+                <li><strong>CFD Validation Study:</strong> Compare experimental drag measurements with computational fluid dynamics models for various object geometries</li>
+            </ul>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="section">
+            <h2 class="section-title">Conclusion</h2>
+            
+            <p>This senior design project successfully delivered a functioning, educational wind tunnel that integrates fluid mechanics principles with hands-on engineering practice. Over three development phases, our team transformed initial concepts into a refined prototype capable of accurate aerodynamic measurements while maintaining affordability and accessibility for student use.</p>
+            
+            <p>The iterative design process—from cardboard prototypes to precision-engineered components—demonstrated the importance of prototyping, testing, and refinement in engineering development. The final system achieves its primary objectives: providing students with experimental validation of theoretical fluid mechanics principles and establishing a foundation for future enhancements and research projects.</p>
+
+            <div class="results-box">
+                <h3>Lessons Learned</h3>
+                <ul>
+                    <li><strong>Design for Manufacturing:</strong> Understanding material properties and fabrication constraints early in design prevents costly late-stage modifications</li>
+                    <li><strong>Iterative Development:</strong> Testing at each phase gate identified critical issues early, allowing for strategic refinements rather than complete redesigns</li>
+                    <li><strong>Cross-Disciplinary Integration:</strong> Combining CAD design, manufacturing, electronics, and data analysis created a more robust final product</li>
+                    <li><strong>Team Communication:</strong> Regular meetings and documented progress ensured alignment and prevented rework</li>
+                    <li><strong>Documentation Value:</strong> Detailed SolidWorks models and testing procedures enable future student improvements and reduce the learning curve for new team members</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Izayah Morris. All rights reserved.</p>
+    </footer>
+</body>
+</html>
