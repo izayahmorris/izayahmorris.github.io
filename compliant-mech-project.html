@@ -137,6 +137,42 @@
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 3rem;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Inline Images */
+        .section-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Two Column Layout with Image */
+        .content-with-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .content-text {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid var(--color-border);
         }
 
@@ -301,6 +337,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .content-with-image {
+                grid-template-columns: 1fr;
+            }
+
             .section-title {
                 font-size: 1.5rem;
             }
@@ -356,6 +396,10 @@
 
     <!-- Main Content -->
     <div class="container">
+
+        <!-- HERO IMAGE LOCATION #1: Right after hero section -->
+        <img src="mechanism-main.jpg" alt="Compliant mechanism device mounted on test fixture" class="hero-image">
+
         <!-- Project Overview -->
         <section class="section">
             <h2 class="section-title">Project Overview</h2>
@@ -371,6 +415,10 @@
             
             <h3 class="section-subtitle">Pseudo Rigid Body Model (PRBM)</h3>
             <p>The compliant mechanism design was based on the Pseudo Rigid Body Model (PRBM) methodology pioneered at Sandia National Laboratories and detailed in Larry Howell's comprehensive textbook on compliant mechanisms. This approach bridges the gap between traditional rigid body analysis and flexible mechanisms by modeling compliant elements as rigid links connected by torsional springs.</p>
+
+            <!-- IMAGE LOCATION #2: After PRBM explanation -->
+            <img src="prbm-diagram.jpg" alt="Pseudo Rigid Body Model schematic showing beam elements and spring connections" class="section-image">
+            <p class="image-caption">Figure: PRBM schematic showing rigid links and torsional spring elements</p>
 
             <h3 class="section-subtitle">Analytical Stiffness Development</h3>
             <p>The analytical model for the single DOF mechanism combines springs in parallel and series configurations, transitioning from torsional spring stiffness to linear (translational) spring stiffness for the end effector:</p>
@@ -414,6 +462,10 @@
                 <li>Outputs cutting parameters compatible with laser cutter software</li>
                 <li>Provides predicted natural frequency for comparison with experimental results</li>
             </ul>
+
+            <!-- IMAGE LOCATION #3: MATLAB code output or flowchart -->
+            <img src="matlab-algorithm-flowchart.jpg" alt="MATLAB algorithm flowchart showing iterative frequency calculation process" class="section-image">
+            <p class="image-caption">Figure: MATLAB algorithm flowchart for parametric frequency design</p>
         </section>
 
         <!-- Fabrication -->
@@ -428,6 +480,10 @@
                 <li>Capability to cut flexible materials (aluminum, acrylic) with consistent edge quality</li>
                 <li>Ability to test design iterations quickly, supporting iterative refinement</li>
             </ul>
+
+            <!-- IMAGE LOCATION #4: Laser cutter or fabricated mechanisms -->
+            <img src="laser-cutter-setup.jpg" alt="Epilogue 60W laser cutter with aluminum mechanisms being cut" class="section-image">
+            <p class="image-caption">Figure: Epilogue 60W laser cutter fabricating aluminum compliant mechanisms</p>
 
             <h3 class="section-subtitle">Mechanism Variants Fabricated</h3>
             <p>Six frequency-specific mechanism variants were designed and manufactured:</p>
@@ -488,6 +544,10 @@
                 </tbody>
             </table>
 
+            <!-- IMAGE LOCATION #5: All fabricated mechanisms laid out together -->
+            <img src="all-mechanisms-comparison.jpg" alt="Six compliant mechanisms with different frequencies displayed together showing size variations" class="section-image">
+            <p class="image-caption">Figure: All six frequency-tuned mechanism variants showing geometric scaling differences</p>
+
             <div class="results-box">
                 <h3>Key Observation</h3>
                 <p>The 80 Hz mechanism showed exceptional correlation between analytical prediction and experimental measurement (deviation of only 0.2 Hz, <0.3% error). This suggests the analytical model's accuracy improves at higher frequencies, possibly due to reduced influence of damping and manufacturing tolerances at frequencies near the upper end of the test range.</p>
@@ -535,6 +595,10 @@
                 </div>
             </div>
 
+            <!-- IMAGE LOCATION #6: Test setup with Arduino and sensors -->
+            <img src="testing-setup.jpg" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image">
+            <p class="image-caption">Figure: Complete experimental testing apparatus with Arduino data acquisition system</p>
+
             <h3 class="section-subtitle">Testing Procedure</h3>
             <p>Each mechanism variant was tested using the following protocol:</p>
             <ol>
@@ -554,6 +618,10 @@
                 <li>Material property variations from nominal aluminum specifications</li>
                 <li>Frequency-dependent behavior of the PRBM model</li>
             </ul>
+
+            <!-- IMAGE LOCATION #7: FFT data or frequency response plots -->
+            <img src="frequency-response-data.jpg" alt="FFT plots showing frequency response peaks for different mechanism variants" class="section-image">
+            <p class="image-caption">Figure: FFT analysis results showing dominant frequency peaks for all six mechanism variants</p>
 
             <h3 class="section-subtitle">Next Testing Phase: Static Stiffness Analysis</h3>
             <p>The next phase of testing will characterize the static force-displacement behavior of each mechanism. This will involve:</p>
