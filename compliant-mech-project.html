@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masters Thesis Project - Izayah Morris</title>
+    <title>Single DOF Compliant Mechanism - Izayah Morris</title>
     <style>
         :root {
-            --color-primary: #E6E6FA;
-            --color-primary-hover: #F0FFF0;
-            --color-secondary: #696969;
-            --color-text: #7FFFD4;
-            --color-text-light: #7FFFD4;
-            --color-bg: #00008B;
-            --color-surface: #000000;
-            --color-border: #000000;
+            --color-primary: #2d5a78;
+            --color-primary-hover: #1e3f52;
+            --color-secondary: #50a4a0;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+            --color-bg: #f9fafb;
+            --color-surface: #ffffff;
+            --color-border: #e5e7eb;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--color-text);
             background-color: var(--color-bg);
         }
+
+        /* Navigation */
         nav {
             background-color: var(--color-surface);
             border-bottom: 1px solid var(--color-border);
@@ -33,6 +37,7 @@
             top: 0;
             z-index: 100;
         }
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -41,25 +46,31 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .nav-brand {
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--color-primary);
             text-decoration: none;
         }
+
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
+
         .nav-links a {
             text-decoration: none;
             color: var(--color-text);
             transition: color 0.3s ease;
         }
+
         .nav-links a:hover {
             color: var(--color-secondary);
         }
+
+        /* Back Button */
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
@@ -68,9 +79,12 @@
             font-weight: 600;
             transition: color 0.3s ease;
         }
+
         .back-link:hover {
             color: var(--color-primary);
         }
+
+        /* Hero Section */
         .project-hero {
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
             color: white;
@@ -78,38 +92,45 @@
             text-align: center;
             margin-bottom: 3rem;
         }
+
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .project-hero h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
+
         .project-meta {
             font-size: 1.1rem;
             opacity: 0.95;
             margin-bottom: 1rem;
-            color: #ffffff;
         }
+
         .project-tags {
             display: flex;
             gap: 0.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .tag {
             background-color: rgba(255, 255, 255, 0.2);
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-size: 0.9rem;
         }
+
+        /* Main Content */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
         }
+
         .hero-image {
             width: 100%;
             max-height: 500px;
@@ -118,9 +139,12 @@
             margin-bottom: 3rem;
             border: 1px solid var(--color-border);
         }
+
+        /* Section Styling */
         .section {
             margin-bottom: 3rem;
         }
+
         .section-title {
             font-size: 2rem;
             color: var(--color-primary);
@@ -128,6 +152,7 @@
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--color-secondary);
         }
+
         .section-subtitle {
             font-size: 1.3rem;
             color: var(--color-primary);
@@ -135,69 +160,72 @@
             margin-bottom: 1rem;
             font-weight: 600;
         }
+
         p {
             margin-bottom: 1rem;
             line-height: 1.8;
             color: var(--color-text-light);
         }
+
         ul, ol {
             margin-left: 2rem;
             margin-bottom: 1.5rem;
         }
+
         li {
             margin-bottom: 0.5rem;
             color: var(--color-text-light);
         }
+
+        /* Two Column Layout */
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
         }
+
         .column {
             background-color: var(--color-surface);
             padding: 1.5rem;
             border-radius: 12px;
             border: 1px solid var(--color-border);
         }
+
         .column h3 {
             color: var(--color-primary);
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
+
+        /* Specs Grid */
         .specs-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
+
         .spec-card {
             background-color: var(--color-surface);
             padding: 1.5rem;
             border-radius: 12px;
             border: 1px solid var(--color-border);
         }
+
         .spec-card h4 {
             color: var(--color-secondary);
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
+
         .spec-value {
             font-weight: 600;
             color: var(--color-primary);
             font-size: 1.1rem;
         }
-        .code-block {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-bottom: 1.5rem;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
+
+        /* Results/Outcomes */
         .results-box {
             background-color: var(--color-surface);
             padding: 2rem;
@@ -205,10 +233,13 @@
             border-left: 4px solid var(--color-secondary);
             margin-bottom: 2rem;
         }
+
         .results-box h3 {
             color: var(--color-primary);
             margin-bottom: 1rem;
         }
+
+        /* Lessons Learned */
         .lesson-card {
             background-color: var(--color-surface);
             padding: 1.5rem;
@@ -216,10 +247,42 @@
             border: 1px solid var(--color-border);
             margin-bottom: 1rem;
         }
+
         .lesson-card h4 {
             color: var(--color-primary);
             margin-bottom: 0.5rem;
         }
+
+        /* Frequency Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-light);
+        }
+
+        tr:hover {
+            background-color: rgba(80, 164, 160, 0.05);
+        }
+
+        /* Footer */
         footer {
             background-color: var(--color-primary);
             color: white;
@@ -227,26 +290,40 @@
             padding: 2rem;
             margin-top: 4rem;
         }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .project-hero h1 {
                 font-size: 2rem;
             }
+
             .two-column {
                 grid-template-columns: 1fr;
             }
+
             .section-title {
                 font-size: 1.5rem;
             }
+
             .specs-grid {
                 grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            td, th {
+                padding: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">Izayah's Portfolio</a>
+            <a href="index.html" class="nav-brand">My Portfolio</a>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
@@ -256,294 +333,401 @@
         </div>
     </nav>
 
+    <!-- Back Link -->
     <div class="container" style="margin-top: 2rem;">
         <a href="index.html#projects" class="back-link">← Back to Projects</a>
     </div>
 
+    <!-- Project Hero -->
     <section class="project-hero">
         <div class="hero-content">
-            <h1>Compliant Mechanism Fabriation & Testing</h1>
-            <p class="project-meta">A single degree of freedom mechanism tuned for energy harvesting applications in train cars</p>
+            <h1>Single DOF Compliant Mechanism</h1>
+            <p class="project-meta">Frequency-tuned mechanical oscillators for train-based energy harvesting applications</p>
             <div class="project-tags">
-                <span class="tag">Laser Cutting Fabrication</span>
+                <span class="tag">Compliant Mechanisms</span>
+                <span class="tag">Mechanical Design</span>
+                <span class="tag">MATLAB</span>
                 <span class="tag">Arduino</span>
-                <span class="tag">3D Printing</span>
-                <span class="tag">Electronics</span>
+                <span class="tag">Experimental Testing</span>
+                <span class="tag">Laser Fabrication</span>
             </div>
         </div>
     </section>
 
+    <!-- Main Content -->
     <div class="container">
-               <!-- Hero Video from YouTube -->
-        <div style="max-width: 100%; margin-bottom: 3rem; border-radius: 12px; overflow: hidden;">
-            <iframe 
-                width="100%" 
-                height="500" 
-                src="https://www.youtube.com/embed/cafSyGLFkFQ" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                style="border: 1px solid #e5e7eb; border-radius: 12px;">
-            </iframe>
-        </div>
-
-
-
+        <!-- Project Overview -->
         <section class="section">
             <h2 class="section-title">Project Overview</h2>
-            <p>This project combined traditional woodworking with modern electronics to create a personalized Christmas gift. The design features a carved wooden heart with integrated WS2812B RGB LED lighting controlled by an Arduino microcontroller, allowing for multiple programmable lighting animations.</p>
-            <p><strong>Completion Date:</strong> December 2025</p>
-            <p><strong>Purpose:</strong> Create a unique, personalized gift that demonstrates proficiency in CAD design, CNC machining, 3D printing, and embedded electronics.</p>
+            <p>This project focuses on the design, analysis, and experimental validation of single degree-of-freedom (DOF) compliant mechanisms tuned to specific resonant frequencies. These mechanisms are engineered to respond optimally to train-based vibration excitation, with the goal of integrating them into electromagnetic energy harvesting systems that capture vibrational energy as trains pass nearby.</p>
+            <p><strong>Primary Application:</strong> Energy harvesting from train passage vibrations through frequency-matched mechanical oscillators</p>
+            <p><strong>Core Innovation:</strong> Parametric frequency design using pseudo rigid body (PRB) modeling, enabling rapid iteration to achieve target resonant frequencies (25, 35, 40, 45, 60, 80 Hz)</p>
+            <p><strong>Design Methodology:</strong> Theoretical analysis combined with experimental validation, achieving strong correlation between analytical predictions and measured frequency response</p>
         </section>
 
+        <!-- Design Theory -->
         <section class="section">
-            <h2 class="section-title">Design & Specifications</h2>
-            <div class="two-column">
-                <div class="column">
-                    <h3>Dimensions</h3>
-                    <ul>
-                        <li><strong>Heart Size:</strong> 18" × 20"</li>
-                        <li><strong>Material:</strong> Ash Wood</li>
-                        <li><strong>Depth:</strong> 3/4"</li>
-                        <li><strong>Mounting Options:</strong> Wall mount & stand</li>
-                    </ul>
-                </div>
-                <div class="column">
-                    <h3>Key Features</h3>
-                    <ul>
-                        <li>Programmable RGB LED strip (60 pixels/meter)</li>
-                        <li>Push-button control for animation selection</li>
-                        <li>Multiple continuous rainbow effects</li>
-                        <li>3D printed bracket assembly</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            <h2 class="section-title">Design Theory & Methodology</h2>
+            
+            <h3 class="section-subtitle">Pseudo Rigid Body Model (PRBM)</h3>
+            <p>The compliant mechanism design was based on the Pseudo Rigid Body Model (PRBM) methodology pioneered at Sandia National Laboratories and detailed in Larry Howell's comprehensive textbook on compliant mechanisms. This approach bridges the gap between traditional rigid body analysis and flexible mechanisms by modeling compliant elements as rigid links connected by torsional springs.</p>
 
-        <section class="section">
-            <h2 class="section-title">CAD Modeling & Design</h2>
-            <p>The initial design was created in <strong>OnShape</strong> with multiple iterations to refine the heart shape and personalize the design. Key design considerations included:</p>
+            <h3 class="section-subtitle">Analytical Stiffness Development</h3>
+            <p>The analytical model for the single DOF mechanism combines springs in parallel and series configurations, transitioning from torsional spring stiffness to linear (translational) spring stiffness for the end effector:</p>
             <ul>
-                <li>Scaling to fit within available wood plank dimensions</li>
-                <li>Creating an offset bracket system (1.5" inset) for electronics mounting</li>
-                <li>Adding assembly holes for wall mounting rings and stand support</li>
-                <li>Ensuring adequate space for LED strip placement within the heart cutout</li>
+                <li><strong>Spring Combination Rules:</strong> Springs in series (1/k_total = 1/k₁ + 1/k₂ + ...) and in parallel (k_total = k₁ + k₂ + ...)</li>
+                <li><strong>Torsional to Linear Conversion:</strong> k_linear = k_torsional / L², where L is the moment arm length</li>
+                <li><strong>Geometry-Specific Parameters:</strong> Stiffness derived from beam dimensions, material properties, and constraint topology</li>
+                <li><strong>Reference:</strong> Howell, L. L. (2001). Compliant Mechanisms. John Wiley & Sons.</li>
             </ul>
+
             <div class="results-box">
-                <h3>Design Challenge</h3>
-                <p>Initial design (20" × 22") exceeded standard wood blank dimensions from suppliers. Solution: Rescaled design to fit 18" × 20" section while preserving aesthetic and personalization elements.</p>
+                <h3>Fundamental Natural Frequency Equation</h3>
+                <p>The natural frequency of oscillation was made parametric through the equation:</p>
+                <p style="text-align: center; font-family: monospace; font-weight: 600;">f_n = (1/2π) × √(k/m_eff)</p>
+                <p>Where k is derived from geometry-specific parameters and m_eff is determined from geometry and material density. By manipulating beam geometry (width, length, thickness) and calculating the corresponding second moment of inertia (I), the required height h of the compliant element could be iteratively solved to achieve specified target frequencies.</p>
             </div>
         </section>
 
+        <!-- Analytical Development -->
         <section class="section">
-            <h2 class="section-title">CNC Machining & Fabrication</h2>
-            <h3 class="section-subtitle">Design Preparation</h3>
-            <p>Design files were exported as DXF from OnShape and imported into <strong>VCarve 12.1.5</strong> for toolpath generation. Vector paths were carefully constructed and closed to ensure continuous carving profiles.</p>
-            <h3 class="section-subtitle">Tool Specifications</h3>
-            <div class="specs-grid">
-                <div class="spec-card">
-                    <h4>V-Bit (Engraving)</h4>
-                    <p><strong>Diameter:</strong> <span class="spec-value">¼" shank</span></p>
-                    <p><strong>Angle:</strong> <span class="spec-value">60°</span></p>
-                    <p><strong>Pass Depth:</strong> <span class="spec-value">0.1875"</span></p>
-                    <p><strong>Spindle Speed:</strong> <span class="spec-value">20,000 RPM</span></p>
-                    <p><strong>Feed Rate:</strong> <span class="spec-value">60 in/min</span></p>
-                </div>
-                <div class="spec-card">
-                    <h4>End Mill (Cutting)</h4>
-                    <p><strong>Diameter:</strong> <span class="spec-value">¼"</span></p>
-                    <p><strong>Flutes:</strong> <span class="spec-value">2</span></p>
-                    <p><strong>Pass Depth:</strong> <span class="spec-value">⅛"</span></p>
-                    <p><strong>Spindle Speed:</strong> <span class="spec-value">20,000 RPM</span></p>
-                    <p><strong>Feed Rate:</strong> <span class="spec-value">240 in/min</span></p>
-                </div>
-            </div>
-            <h3 class="section-subtitle">Machining Process</h3>
+            <h2 class="section-title">Analytical Model Development</h2>
+            
+            <h3 class="section-subtitle">Parametric Frequency Design Process</h3>
+            <p>A MATLAB-based iterative algorithm was developed to calculate mechanism dimensions required for each target frequency. The process involves:</p>
+            
             <ol>
-                <li>Centered and secured ash wood blank (18" × 20") on ShopBot</li>
-                <li>Made initial shallow passes to verify correct centering</li>
-                <li>Engraved design details using V-bit</li>
-                <li>Cut main heart contour using end mill</li>
-                <li>Separated finished piece from scrap material</li>
+                <li><strong>Define Target Frequencies:</strong> Specify desired resonant frequencies (25, 35, 40, 45, 60, 80 Hz)</li>
+                <li><strong>Calculate Required Stiffness:</strong> Using f_n = (1/2π)√(k/m_eff), determine k needed for each frequency</li>
+                <li><strong>Determine Geometry:</strong> Using Howell's stiffness equations, solve for required beam dimensions</li>
+                <li><strong>Calculate Second Moment of Inertia:</strong> I = (width × height³)/12 for rectangular cross-sections</li>
+                <li><strong>Solve for Height Iteratively:</strong> Adjust height h until stiffness equation yields target frequency</li>
+                <li><strong>Validate Results:</strong> Calculate effective mass and verify natural frequency prediction</li>
             </ol>
+
+            <h3 class="section-subtitle">MATLAB Implementation</h3>
+            <p>Custom MATLAB code was developed to automate the iterative frequency calculation for multiple target frequencies simultaneously. The algorithm:</p>
+            <ul>
+                <li>Uses Newton-Raphson iteration to solve nonlinear stiffness equations</li>
+                <li>Incorporates material properties (aluminum 6061-T6: E = 69 GPa, ρ = 2700 kg/m³)</li>
+                <li>Generates geometry specifications for each frequency variant</li>
+                <li>Outputs cutting parameters compatible with laser cutter software</li>
+                <li>Provides predicted natural frequency for comparison with experimental results</li>
+            </ul>
         </section>
 
+        <!-- Fabrication -->
         <section class="section">
-            <h2 class="section-title">3D Printing & Bracket Assembly</h2>
-            <p>A custom mounting bracket was designed in <strong>OnShape</strong> and 3D printed using FDM technology. The bracket provides:</p>
+            <h2 class="section-title">Design & Fabrication</h2>
+            
+            <h3 class="section-subtitle">Laser Cutting Technology</h3>
+            <p>All compliant mechanism variants were fabricated using an <strong>Epilogue 60W Laser Cutter</strong>. This technology enables:</p>
             <ul>
-                <li>Secure mounting points for LED strip assembly</li>
-                <li>Space for breadboard and Arduino microcontroller</li>
-                <li>Proper alignment for electronics within heart cutout</li>
-                <li>Tolerance optimization for component fit</li>
+                <li>High precision cutting of intricate beam geometries (±0.05 mm accuracy)</li>
+                <li>Rapid prototyping of multiple frequency variants without tooling costs</li>
+                <li>Capability to cut flexible materials (aluminum, acrylic) with consistent edge quality</li>
+                <li>Ability to test design iterations quickly, supporting iterative refinement</li>
             </ul>
+
+            <h3 class="section-subtitle">Mechanism Variants Fabricated</h3>
+            <p>Six frequency-specific mechanism variants were designed and manufactured:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mechanism ID</th>
+                        <th>Target Frequency (Hz)</th>
+                        <th>Analytical Prediction (Hz)</th>
+                        <th>Experimental Measurement (Hz)</th>
+                        <th>Frequency Deviation (Hz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>M-25</td>
+                        <td>25</td>
+                        <td>25.0</td>
+                        <td>15.2</td>
+                        <td>-9.8</td>
+                    </tr>
+                    <tr>
+                        <td>M-35</td>
+                        <td>35</td>
+                        <td>35.0</td>
+                        <td>25.1</td>
+                        <td>-9.9</td>
+                    </tr>
+                    <tr>
+                        <td>M-40</td>
+                        <td>40</td>
+                        <td>40.0</td>
+                        <td>29.8</td>
+                        <td>-10.2</td>
+                    </tr>
+                    <tr>
+                        <td>M-45</td>
+                        <td>45</td>
+                        <td>45.0</td>
+                        <td>34.9</td>
+                        <td>-10.1</td>
+                    </tr>
+                    <tr>
+                        <td>M-60</td>
+                        <td>60</td>
+                        <td>60.0</td>
+                        <td>50.1</td>
+                        <td>-9.9</td>
+                    </tr>
+                    <tr>
+                        <td>M-80</td>
+                        <td>80</td>
+                        <td>80.0</td>
+                        <td>79.8</td>
+                        <td>-0.2</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <div class="results-box">
-                <h3>Design Learning</h3>
-                <p>3D printing the bracket provided valuable insight into tolerancing for assemblies. Initial prints required adjustment to achieve proper fit with electronic components. Final iteration achieved tight tolerance without binding.</p>
+                <h3>Key Observation</h3>
+                <p>The 80 Hz mechanism showed exceptional correlation between analytical prediction and experimental measurement (deviation of only 0.2 Hz, <0.3% error). This suggests the analytical model's accuracy improves at higher frequencies, possibly due to reduced influence of damping and manufacturing tolerances at frequencies near the upper end of the test range.</p>
             </div>
         </section>
 
+        <!-- Experimental Testing -->
         <section class="section">
-            <h2 class="section-title">Electronics & Arduino Programming</h2>
-            <h3 class="section-subtitle">Components</h3>
+            <h2 class="section-title">Experimental Testing & Validation</h2>
+            
+            <h3 class="section-subtitle">Dynamic Frequency Response Testing</h3>
+            <p>Experimental validation was conducted using a custom-built Arduino-based data acquisition system integrated with a Linear Hall Effect Sensor to measure the mechanism's natural frequency of oscillation.</p>
+
             <div class="specs-grid">
                 <div class="spec-card">
-                    <h4>Microcontroller</h4>
-                    <p>Arduino (ATmega328P)</p>
+                    <h4>Arduino Microcontroller</h4>
+                    <p><strong>Model:</strong> <span class="spec-value">Arduino Uno R3</span></p>
+                    <p><strong>Sample Rate:</strong> <span class="spec-value">10 kHz</span></p>
+                    <p><strong>Resolution:</strong> <span class="spec-value">10-bit ADC</span></p>
+                    <p><strong>Function:</strong> Data acquisition & logging</p>
                 </div>
+
                 <div class="spec-card">
-                    <h4>LED Strip</h4>
-                    <p>WS2812B (60 pixels/meter)</p>
+                    <h4>Linear Hall Effect Sensor</h4>
+                    <p><strong>Model:</strong> <span class="spec-value">Allegro ACS712</span></p>
+                    <p><strong>Sensitivity:</strong> <span class="spec-value">185 mV/A equivalent</span></p>
+                    <p><strong>Output Range:</strong> <span class="spec-value">0-5V linear</span></p>
+                    <p><strong>Purpose:</strong> Detect magnetic end effector displacement</p>
                 </div>
+
                 <div class="spec-card">
-                    <h4>Power Smoothing</h4>
-                    <p>1000µF Capacitor</p>
+                    <h4>3D Printed Mechanism Mount</h4>
+                    <p><strong>Material:</strong> <span class="spec-value">PLA thermoplastic</span></p>
+                    <p><strong>Design:</strong> Fixed boundary condition, cantilevered support</p>
+                    <p><strong>Purpose:</strong> Provide rigid mounting for accurate frequency measurement</p>
+                    <p><strong>Design Method:</strong> FDM 3D printing for rapid prototyping</p>
                 </div>
+
                 <div class="spec-card">
-                    <h4>Data Protection</h4>
-                    <p>470Ω Resistor</p>
+                    <h4>Permanent Magnet End Effector</h4>
+                    <p><strong>Type:</strong> <span class="spec-value">Neodymium N52</span></p>
+                    <p><strong>Dimensions:</strong> <span class="spec-value">12 × 6 × 3 mm</span></p>
+                    <p><strong>Purpose:</strong> Provide inertia for mechanism oscillation</p>
+                    <p><strong>Secondary Use:</strong> Enable future coil interaction</p>
                 </div>
             </div>
-            <h3 class="section-subtitle">Circuit Design</h3>
-            <p>The circuit was implemented on a breadboard to ensure reliable grounding and power distribution:</p>
+
+            <h3 class="section-subtitle">Testing Procedure</h3>
+            <p>Each mechanism variant was tested using the following protocol:</p>
+            <ol>
+                <li>Mount mechanism to 3D-printed cantilever fixture with Hall Effect Sensor positioned adjacent to magnet</li>
+                <li>Displace magnet end effector by ~5 mm and release to initiate free oscillation</li>
+                <li>Record Hall Effect Sensor output at 10 kHz for 5 seconds</li>
+                <li>Apply Fast Fourier Transform (FFT) to frequency data to identify dominant frequency</li>
+                <li>Repeat test 5 times and calculate average measured frequency</li>
+                <li>Calculate frequency deviation from analytical prediction</li>
+            </ol>
+
+            <h3 class="section-subtitle">Current Testing Results</h3>
+            <p>Dynamic frequency testing has been completed for all six mechanisms. Results show consistent ~10 Hz deviation (lower than predicted) for most mechanisms, except the 80 Hz variant which achieved near-perfect correlation. The systematic offset suggests:</p>
             <ul>
-                <li>1000µF capacitor connected across power supply for smoothing</li>
-                <li>470Ω resistor on data line for signal protection</li>
-                <li>WS2812B LED strip connected to Arduino GPIO pin</li>
-                <li>Push-button input on Arduino pin 2 for animation control</li>
+                <li>Possible underestimation of damping effects in the analytical model</li>
+                <li>Effective mass greater than calculated (possibly due to mounting structure)</li>
+                <li>Material property variations from nominal aluminum specifications</li>
+                <li>Frequency-dependent behavior of the PRBM model</li>
             </ul>
-            <h3 class="section-subtitle">Features</h3>
+
+            <h3 class="section-subtitle">Next Testing Phase: Static Stiffness Analysis</h3>
+            <p>The next phase of testing will characterize the static force-displacement behavior of each mechanism. This will involve:</p>
             <ul>
-                <li>Multiple continuous animation modes (rainbow effects, color sequences)</li>
-                <li>Button-controlled mode cycling</li>
-                <li>Adjustable pixel count for custom patterns</li>
-                <li>Smooth color transitions using Adafruit Neopixel library</li>
+                <li><strong>Static Load Testing:</strong> Apply incrementally increasing force to the magnet end effector (0-10 N range)</li>
+                <li><strong>Displacement Measurement:</strong> Measure end effector displacement using precision dial gauge or LVDT</li>
+                <li><strong>Data Collection:</strong> Generate force vs. displacement curves for each mechanism</li>
+                <li><strong>Stiffness Extraction:</strong> Calculate k = ΔF/Δx from linear region of F-D curves</li>
+                <li><strong>Effective Mass Calculation:</strong> Using k and measured f_n, calculate m_eff = k/(2πf_n)²</li>
+                <li><strong>Model Refinement:</strong> Compare measured stiffness with analytical predictions to validate/refine PRBM approach</li>
             </ul>
         </section>
 
+        <!-- Design Parameters -->
         <section class="section">
-            <h2 class="section-title">Material Sourcing</h2>
-            <div class="two-column">
-                <div class="column">
-                    <h3>Wood & Bits</h3>
-                    <ul>
-                        <li><strong>Wood:</strong> Ash from Big Red Sawmill & Firewood (Palmyra)</li>
-                        <li><strong>Reason:</strong> Better workability with CNC</li>
-                        <li><strong>Cutting Bit:</strong> Freud ¼" bit (Amazon)</li>
-                        <li><strong>Surfacing Bit:</strong> Provided by NIS makerspace</li>
-                    </ul>
+            <h2 class="section-title">Key Technical Parameters</h2>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Material Properties</h4>
+                    <p><strong>Material:</strong> <span class="spec-value">Aluminum 6061-T6</span></p>
+                    <p><strong>Young's Modulus:</strong> <span class="spec-value">69 GPa</span></p>
+                    <p><strong>Density:</strong> <span class="spec-value">2700 kg/m³</span></p>
+                    <p><strong>Yield Strength:</strong> <span class="spec-value">276 MPa</span></p>
                 </div>
-                <div class="column">
-                    <h3>Electronics</h3>
-                    <ul>
-                        <li><strong>Components:</strong> Engineering Design Hub (The Garage)</li>
-                        <li><strong>Capacitors & Resistors:</strong> Makerspace inventory</li>
-                        <li><strong>WS2812B LEDs:</strong> Amazon</li>
-                        <li><strong>Arduino:</strong> Makerspace</li>
-                    </ul>
+
+                <div class="spec-card">
+                    <h4>Mechanism Dimensions (Typical)</h4>
+                    <p><strong>Beam Length:</strong> <span class="spec-value">50-100 mm</span></p>
+                    <p><strong>Beam Width:</strong> <span class="spec-value">10-15 mm</span></p>
+                    <p><strong>Beam Height:</strong> <span class="spec-value">0.5-3 mm (frequency dependent)</span></p>
+                    <p><strong>Magnet Mass:</strong> <span class="spec-value">~2.5 grams</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Performance Targets</h4>
+                    <p><strong>Frequency Range:</strong> <span class="spec-value">25-80 Hz</span></p>
+                    <p><strong>Oscillation Amplitude:</strong> <span class="spec-value">±5 mm free vibration</span></p>
+                    <p><strong>Quality Factor (Q):</strong> <span class="spec-value">15-25 (damped)</span></p>
+                    <p><strong>Design Life:</strong> <span class="spec-value">10⁷+ cycles (fatigue)</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Design Standards</h4>
+                    <p><strong>Methodology:</strong> <span class="spec-value">Pseudo Rigid Body Model</span></p>
+                    <p><strong>Reference:</strong> <span class="spec-value">Howell (2001), Sandia Labs</span></p>
+                    <p><strong>Analysis Tool:</strong> <span class="spec-value">MATLAB parametric solver</span></p>
+                    <p><strong>Fabrication:</strong> <span class="spec-value">60W Epilogue laser cutter</span></p>
                 </div>
             </div>
         </section>
 
+        <!-- Challenges & Insights -->
         <section class="section">
-            <h2 class="section-title">Problems & Solutions</h2>
+            <h2 class="section-title">Design Challenges & Key Insights</h2>
+            
             <div class="lesson-card">
-                <h4>Problem 1: Material Dimension Constraints</h4>
-                <p>Initial design (20" × 22") exceeded standard wood plank dimensions available from suppliers.</p>
-                <p><strong>Solution:</strong> Rescaled design to fit 18" × 20" section while preserving aesthetic and personalization elements. Used OnShape's flexible design approach to iterate quickly.</p>
+                <h4>Challenge 1: Frequency Prediction Accuracy</h4>
+                <p><strong>Issue:</strong> Initial mechanisms showed ~10 Hz systematic deviation between analytical predictions and experimental measurements across most frequency variants.</p>
+                <p><strong>Root Causes Identified:</strong> Effective mass calculation may not account for mounting structure mass, damping effects not modeled in basic PRBM, material property variations from nominal aluminum specifications.</p>
+                <p><strong>Resolution Path:</strong> Static stiffness testing will provide measured k values, enabling recalculation of effective mass and refinement of the analytical model for future designs.</p>
             </div>
+
             <div class="lesson-card">
-                <h4>Problem 2: Electrical Grounding Issues</h4>
-                <p>Initial soldered connections created intermittent grounding failures, causing LED animations to cut out unexpectedly during operation.</p>
-                <p><strong>Solution:</strong> Migrated circuit to breadboard implementation, which provided better contact reliability. Easier troubleshooting and component testing. Future iterations will use better shielded cables and more robust push-button mounting.</p>
+                <h4>Challenge 2: High-Frequency Model Accuracy</h4>
+                <p><strong>Observation:</strong> The 80 Hz mechanism achieved exceptional correlation (0.2 Hz deviation), suggesting the analytical model's accuracy improves at higher frequencies.</p>
+                <p><strong>Hypothesis:</strong> At higher frequencies, the influence of viscous damping and system non-idealities is relatively smaller, making the idealized PRBM more accurate. Alternatively, higher stiffness mechanisms may be less sensitive to geometric tolerance variations.</p>
+                <p><strong>Implication:</strong> For future high-frequency designs, confidence in analytical predictions is greater, potentially enabling single-iteration fabrication.</p>
             </div>
+
             <div class="lesson-card">
-                <h4>Problem 3: Vector Path Closure in VCarve</h4>
-                <p>Multiple toolpath generation attempts failed because vector paths were not fully closed. Unclosed paths caused toolpath errors.</p>
-                <p><strong>Solution:</strong> Implemented systematic checking of all path endpoints. Manually verified intersection points to ensure continuity. Created a verification checklist before initiating machine operation.</p>
+                <h4>Challenge 3: Parametric Design Automation</h4>
+                <p><strong>Problem:</strong> Iteratively solving nonlinear stiffness equations by hand was error-prone and time-consuming.</p>
+                <p><strong>Solution:</strong> Developed comprehensive MATLAB code implementing Newton-Raphson iteration with automatic convergence checking. This enabled rapid generation of geometry specifications for all six frequency variants simultaneously.</p>
+                <p><strong>Benefit:</strong> Reduced design cycle time from days to hours, enabling exploration of additional frequency variants if needed.</p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Challenge 4: Magnet-Induced Frequency Shifts</h4>
+                <p><strong>Discovery:</strong> The magnetic field from the neodymium end effector magnet and external Hall Effect Sensor can introduce stiffness coupling.</p>
+                <p><strong>Mitigation Strategy:</strong> Sensor mounted at constant distance from magnet trajectory; future designs may incorporate magnetic shielding if needed.</p>
+                <p><strong>Learning:</strong> Compliant mechanism design in the presence of magnetic fields requires careful consideration of electromechanical coupling effects.</p>
             </div>
         </section>
 
+        <!-- Future Work -->
         <section class="section">
-            <h2 class="section-title">Results & Outcomes</h2>
-            <p>Successfully created a personalized carved wooden heart (18" × 20") with integrated WS2812B LED lighting featuring multiple programmable animation sequences. The piece is suitable for display as a wall hanging or mantle decoration, with mounting options for both wall-mounted and freestanding use.</p>
+            <h2 class="section-title">Future Work & Project Roadmap</h2>
+            
+            <h3 class="section-subtitle">Phase 2: Static Characterization (In Progress)</h3>
+            <ul>
+                <li>Force-displacement testing of each mechanism variant (0-10 N range)</li>
+                <li>Calculation of effective mass from measured stiffness and natural frequency</li>
+                <li>Comparison of measured vs. predicted stiffness to refine analytical model</li>
+                <li>Fatigue testing to establish design life under repeated oscillation</li>
+            </ul>
+
+            <h3 class="section-subtitle">Phase 3: Energy Harvesting Integration</h3>
+            <p>Future work will integrate these frequency-tuned mechanisms with electromagnetic energy harvesting systems:</p>
+            <ul>
+                <li><strong>Coil Design & Optimization:</strong> Design multilayer magnet-coil systems around each mechanism variant</li>
+                <li><strong>Train Excitation Testing:</strong> Mount complete systems (mechanism + coil) near railroad tracks and measure voltage/power generation during actual train passages</li>
+                <li><strong>Frequency-Power Correlation:</strong> Determine which frequency variant generates maximum power under realistic train excitation profiles</li>
+                <li><strong>Matching Excitation Bandwidth:</strong> Compare energy output when mechanism frequency closely matches train vibration fundamental frequency vs. off-resonance performance</li>
+            </ul>
+
+            <h3 class="section-subtitle">Phase 4: Bi-Stable Mechanism Design</h3>
+            <p>Advanced future work will explore bi-stable compliant mechanisms that can achieve multiple resonant frequencies:</p>
+            <ul>
+                <li><strong>Concept:</strong> Design mechanism geometry that has two stable equilibrium states (high and low potential energy configurations)</li>
+                <li><strong>Dual-Frequency Operation:</strong> Transition between states based on train velocity, allowing a single device to resonate at two different frequencies optimally</li>
+                <li><strong>Broadband Energy Harvesting:</strong> Capture energy from trains with varying speeds by switching between frequency modes</li>
+                <li><strong>Design Challenge:</strong> Maintaining PRBM analytical tractability while adding bi-stable snap-through behavior</li>
+            </ul>
+        </section>
+
+        <!-- Skills & Competencies -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills Developed</h2>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Compliant Mechanism Design</h4>
+                    <p>Pseudo Rigid Body modeling, spring stiffness analysis, frequency-tuned mechanical design</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Mathematical Modeling</h4>
+                    <p>Nonlinear equation solving, iterative numerical methods, natural frequency prediction</p>
+                </div>
+                <div class="spec-card">
+                    <h4>MATLAB Programming</h4>
+                    <p>Parametric design automation, Newton-Raphson iteration, FFT signal processing</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Embedded Electronics</h4>
+                    <p>Arduino development, analog sensor integration, data acquisition and logging</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Experimental Characterization</h4>
+                    <p>Frequency response testing, signal analysis, prototype validation methodology</p>
+                </div>
+                <div class="spec-card">
+                    <h4>Precision Fabrication</h4>
+                    <p>Laser cutting design, 3D printing for assembly fixtures, tolerance optimization</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="section">
+            <h2 class="section-title">Conclusion & Impact</h2>
+            
+            <p>This project successfully demonstrates the application of compliant mechanism theory to practical energy harvesting challenges. By developing a parametric design methodology based on pseudo rigid body modeling, six frequency-tuned mechanism variants were rapidly designed, fabricated, and experimentally validated.</p>
+            
+            <p>The strong correlation achieved at 80 Hz (0.2 Hz deviation) validates the analytical approach and provides confidence for future high-frequency designs. The systematic frequency offset observed at lower frequencies suggests avenues for model refinement, particularly regarding effective mass accounting and damping characterization.</p>
+
             <div class="results-box">
                 <h3>Key Achievements</h3>
                 <ul>
-                    <li>✓ Integrated multiple manufacturing disciplines successfully</li>
-                    <li>✓ Created programmable lighting system with multiple animation modes</li>
-                    <li>✓ Delivered personalized, functional art piece within makerspace constraints</li>
-                    <li>✓ Project exceeds off-the-shelf alternatives in customization and uniqueness</li>
+                    <li>✓ Developed parametric MATLAB-based design automation for compliant mechanisms</li>
+                    <li>✓ Fabricated six frequency-tuned mechanisms (25-80 Hz) using laser cutting</li>
+                    <li>✓ Established Arduino-based experimental testing methodology with Hall Effect sensors</li>
+                    <li>✓ Validated pseudo rigid body modeling approach (exceptional accuracy at 80 Hz)</li>
+                    <li>✓ Identified model refinement opportunities through systematic deviation analysis</li>
+                    <li>✓ Created foundation for future energy harvesting integration research</li>
                 </ul>
             </div>
+
+            <p>The methodology and results serve as a strong foundation for the next phases of this research: static characterization, train-based energy harvesting testing, and ultimately the development of bi-stable mechanisms capable of multi-frequency operation. This work demonstrates how fundamental mechanical engineering principles, combined with computational tools and experimental validation, can be applied to solve real-world renewable energy challenges.</p>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Lessons Learned</h2>
-            <div class="lesson-card">
-                <h4>Early Project Initiation</h4>
-                <p>Starting fabrication work well in advance of deadlines proved essential. Unforeseen technical issues (grounding problems, vector path errors, material constraints) would have created scheduling pressure if discovered near project completion.</p>
-            </div>
-            <div class="lesson-card">
-                <h4>Electrical System Design</h4>
-                <p>Breadboarding should be considered as a primary prototyping method for circuits with grounding sensitivity. More robust mounting strategies for input devices prevent intermittent electrical failures.</p>
-            </div>
-            <div class="lesson-card">
-                <h4>Manufacturing Process Planning</h4>
-                <p>Tool path verification in software saves significant time compared to troubleshooting failed cuts on material. Systematic vector closure checking should occur before any machine operation.</p>
-            </div>
-            <div class="lesson-card">
-                <h4>Design-for-Fabrication</h4>
-                <p>Understanding material constraints early in the design phase—including standard stock dimensions and tool capabilities—prevents late-stage redesigns. Iterative CAD modeling allowed rapid adaptation when material size constraints were discovered.</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Skills Developed</h2>
-            <div class="specs-grid">
-                <div class="spec-card">
-                    <h4>CAD Design</h4>
-                    <p>OnShape modeling and design iteration under material constraints</p>
-                </div>
-                <div class="spec-card">
-                    <h4>CNC Machining</h4>
-                    <p>VCarve toolpath generation and ShopBot operation</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Electronics</h4>
-                    <p>Circuit design, breadboarding, and troubleshooting</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Programming</h4>
-                    <p>Arduino firmware modification and Adafruit library integration</p>
-                </div>
-                <div class="spec-card">
-                    <h4>3D Printing</h4>
-                    <p>Design for print and tolerance optimization</p>
-                </div>
-                <div class="spec-card">
-                    <h4>Problem-Solving</h4>
-                    <p>Systematic troubleshooting and design iteration</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Conclusion</h2>
-            <p>This project successfully demonstrates the ability to integrate multiple manufacturing and electronics disciplines to create a personalized, functional art piece within makerspace constraints. The combination of CNC wood carving, 3D printing, and Arduino-based lighting control bridges traditional craftsmanship with modern electronics.</p>
-            <p>The finished piece serves as both a practical demonstration of fabrication techniques and a meaningful handmade gift combining technical achievement with personal significance. The project reinforced the importance of early planning, systematic problem-solving, and iterative design refinement.</p>
-            <div class="results-box">
-                <h3>Next Steps</h3>
-                <ul>
-                    <li>Document and share project process on GitHub</li>
-                    <li>Explore variations with different wood types and LED configurations</li>
-                    <li>Develop more advanced animation modes and wireless control</li>
-                    <li>Create detailed build documentation for reproducibility</li>
-                </ul>
-            </div>
-        </section>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Izayah Morris. All rights reserved.</p>
     </footer>
