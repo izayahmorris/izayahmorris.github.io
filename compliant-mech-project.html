@@ -398,7 +398,7 @@
     <div class="container">
 
         <!-- HERO IMAGE LOCATION #1: Right after hero section -->
-        <img src="mechanism-main.jpg" alt="Compliant mechanism device mounted on test fixture" class="hero-image">
+        <img src="mechanism-main.png" alt="Compliant mechanism device mounted on test fixture" class="hero-image">
 
         <!-- Project Overview -->
         <section class="section">
@@ -417,7 +417,7 @@
             <p>The compliant mechanism design was based on the Pseudo Rigid Body Model (PRBM) methodology pioneered at Sandia National Laboratories and detailed in Larry Howell's comprehensive textbook on compliant mechanisms. This approach bridges the gap between traditional rigid body analysis and flexible mechanisms by modeling compliant elements as rigid links connected by torsional springs.</p>
 
             <!-- IMAGE LOCATION #2: After PRBM explanation -->
-            <img src="prbm-diagram.jpg" alt="Pseudo Rigid Body Model schematic showing beam elements and spring connections" class="section-image">
+            <img src="mechanism-prbm" alt="Pseudo Rigid Body Model schematic showing beam elements and spring connections" class="section-image">
             <p class="image-caption">Figure: PRBM schematic showing rigid links and torsional spring elements</p>
 
             <h3 class="section-subtitle">Analytical Stiffness Development</h3>
@@ -456,8 +456,8 @@
             <h3 class="section-subtitle">MATLAB Implementation</h3>
             <p>Custom MATLAB code was developed to automate the iterative frequency calculation for multiple target frequencies simultaneously. The algorithm:</p>
             <ul>
-                <li>Uses Newton-Raphson iteration to solve nonlinear stiffness equations</li>
-                <li>Incorporates material properties (aluminum 6061-T6: E = 69 GPa, ρ = 2700 kg/m³)</li>
+                <li></li>
+                <li>Incorporates material properties (Delrin : E = 2.9 GPa, ρ = 1410-1420 kg/m³)</li>
                 <li>Generates geometry specifications for each frequency variant</li>
                 <li>Outputs cutting parameters compatible with laser cutter software</li>
                 <li>Provides predicted natural frequency for comparison with experimental results</li>
@@ -483,7 +483,7 @@
 
             <!-- IMAGE LOCATION #4: Laser cutter or fabricated mechanisms -->
             <img src="laser-cutter-setup.jpg" alt="Epilogue 60W laser cutter with aluminum mechanisms being cut" class="section-image">
-            <p class="image-caption">Figure: Epilogue 60W laser cutter fabricating aluminum compliant mechanisms</p>
+            <p class="image-caption">Figure: Epilogue 60W laser cutter fabricating compliant mechanisms</p>
 
             <h3 class="section-subtitle">Mechanism Variants Fabricated</h3>
             <p>Six frequency-specific mechanism variants were designed and manufactured:</p>
@@ -503,43 +503,43 @@
                         <td>M-25</td>
                         <td>25</td>
                         <td>25.0</td>
-                        <td>15.2</td>
-                        <td>-9.8</td>
+                        <td>35.8</td>
+                        <td>10.8</td>
                     </tr>
                     <tr>
                         <td>M-35</td>
                         <td>35</td>
                         <td>35.0</td>
-                        <td>25.1</td>
-                        <td>-9.9</td>
+                        <td>43.5</td>
+                        <td>8.5</td>
                     </tr>
                     <tr>
                         <td>M-40</td>
                         <td>40</td>
                         <td>40.0</td>
-                        <td>29.8</td>
-                        <td>-10.2</td>
+                        <td>56.5</td>
+                        <td>16.5</td>
                     </tr>
                     <tr>
                         <td>M-45</td>
                         <td>45</td>
                         <td>45.0</td>
                         <td>34.9</td>
-                        <td>-10.1</td>
+                        <td>10.1</td>
                     </tr>
                     <tr>
                         <td>M-60</td>
                         <td>60</td>
                         <td>60.0</td>
-                        <td>50.1</td>
-                        <td>-9.9</td>
+                        <td>68.7</td>
+                        <td>8.7</td>
                     </tr>
                     <tr>
                         <td>M-80</td>
                         <td>80</td>
                         <td>80.0</td>
-                        <td>79.8</td>
-                        <td>-0.2</td>
+                        <td>79.5</td>
+                        <td>-0.5</td>
                     </tr>
                 </tbody>
             </table>
@@ -550,7 +550,7 @@
 
             <div class="results-box">
                 <h3>Key Observation</h3>
-                <p>The 80 Hz mechanism showed exceptional correlation between analytical prediction and experimental measurement (deviation of only 0.2 Hz, <0.3% error). This suggests the analytical model's accuracy improves at higher frequencies, possibly due to reduced influence of damping and manufacturing tolerances at frequencies near the upper end of the test range.</p>
+                <p>The 80 Hz mechanism showed exceptional correlation between analytical prediction and experimental measurement (deviation of only 0.5 Hz). This suggests the analytical model's accuracy improves at higher frequencies, possibly due to reduced influence of damping and manufacturing tolerances at frequencies near the upper end of the test range.</p>
             </div>
         </section>
 
@@ -565,7 +565,7 @@
                 <div class="spec-card">
                     <h4>Arduino Microcontroller</h4>
                     <p><strong>Model:</strong> <span class="spec-value">Arduino Uno R3</span></p>
-                    <p><strong>Sample Rate:</strong> <span class="spec-value">10 kHz</span></p>
+                    <p><strong>Sample Rate:</strong> <span class="spec-value">9 kHz</span></p>
                     <p><strong>Resolution:</strong> <span class="spec-value">10-bit ADC</span></p>
                     <p><strong>Function:</strong> Data acquisition & logging</p>
                 </div>
