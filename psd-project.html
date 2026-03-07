@@ -320,7 +320,8 @@
             <h2 class="section-title">Design Methodology</h2>
             <h3 class="section-subtitle">From 3D Mesh to Contours</h3>
             <p>The process begins by importing a watertight mesh into Rhino and generating evenly spaced contour curves in two orthogonal directions using Grasshopper's contour components. These contour families define the profiles of the vertical and horizontal slices that will interlock in the final assembly.</p>
-            <img src="psd-contours.png" alt="Rhino viewport showing orthogonal contour slices through the model" class="section-image">
+            <img src="psd-contours.png" alt="Rhino viewport showing orthogonal contour slices through the model" class="section-image"
+                style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
             <p class="image-caption">Figure: Orthogonal contour sets generated from the Darth Vader model.</p>
             <h3 class="section-subtitle">Intersection Logic & Slot Placement</h3>
             <p>A custom Grasshopper definition locates all intersections between the orthogonal contour sets, then uses those points to position and size the slots where slices will interlock. Intersection points are offset and reconstructed so that helper lines can find a second intersection on the opposite contour edge, giving a local thickness for the joint.</p>
