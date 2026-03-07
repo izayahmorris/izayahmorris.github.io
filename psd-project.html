@@ -1,1 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametric Scripting & Design Project - Izayah Morris</title>
+    <style>
+        :root {
+            --color-primary: #E6E6FA;
+            --color-primary-hover: #F0FFF0;
+            --color-secondary: #696969;
+            --color-text: #7FFFD4;
+            --color-text-light: #7FFFD4;
+            --color-bg: #00008B;
+            --color-surface: #000000;
+            --color-border: #000000;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
+
+        /* Back Button */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+
+        /* Project Hero */
+        .project-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-light);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .column {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .column h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .spec-card h4 {
+            color: var(--color-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .results-box {
+            background-color: var(--color-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .results-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--color-secondary);
+            color: dark grey;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">My Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back Link -->
+    <div class="container" style="margin-top: 2rem;">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
+    </div>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <h1>Parametric Scripting & Design</h1>
+            <p class="project-meta">
+                Rhino + Grasshopper workflow for a laser‑cut, slide‑together Darth Vader sculpture in corrugated cardboard
+            </p>
+            <div class="project-tags">
+                <span class="tag">Rhino</span>
+                <span class="tag">Grasshopper</span>
+                <span class="tag">Parametric Design</span>
+                <span class="tag">Laser Cutting</span>
+                <span class="tag">Digital Fabrication</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- HERO IMAGE: final assembled figure -->
+        <img src="psd-hero.png" alt="Laser-cut Darth Vader contour assembly" class="hero-image">
+
+        <!-- Project Overview -->
+        <section class="section">
+            <h2 class="section-title">Project Overview</h2>
+            <p>
+                In this summer Parametric Scripting & Design course, I built a Grasshopper workflow that converts 
+                a 3D model into interlocking 2D contour slices that can be laser‑cut and assembled into a physical sculpture. [file:62]
+            </p>
+            <p>
+                After experimenting with several Star Wars models, I settled on a solid Darth Vader bust and developed 
+                a script that automatically generates orthogonal contour sets, computes their intersections, and 
+                creates slide‑together joints for corrugated cardboard fabrication. [file:62][file:63]
+            </p>
+            <p>
+                The result is a parametric pipeline: swap in any suitable 3D mesh, adjust a few spacing and thickness 
+                parameters, and output ready‑to‑cut geometry for a layered 3D representation built entirely from 2D parts. [file:62]
+            </p>
+        </section>
+
+        <!-- Design Methodology -->
+        <section class="section">
+            <h2 class="section-title">Design Methodology</h2>
+
+            <h3 class="section-subtitle">From 3D Mesh to Contours</h3>
+            <p>
+                The process begins by importing a watertight mesh into Rhino and generating evenly spaced contour 
+                curves in two orthogonal directions using Grasshopper’s contour components. These contour families 
+                define the profiles of the vertical and horizontal slices that will interlock in the final assembly. [file:62]
+            </p>
+
+            <img src="psd-contours.png" alt="Rhino viewport showing orthogonal contour slices through the model" class="section-image">
+            <p class="image-caption">Figure: Orthogonal contour sets generated from the Darth Vader model.</p>
+
+            <h3 class="section-subtitle">Intersection Logic & Slot Placement</h3>
+            <p>
+                A custom Grasshopper definition locates all intersections between the orthogonal contour sets, 
+                then uses those points to position and size the slots where slices will interlock. Intersection points 
+                are offset and reconstructed so that helper lines can find a second intersection on the opposite contour edge, 
+                giving a local thickness for the joint. [file:62]
+            </p>
+            <p>
+                Midpoints along these helper lines become the centers of rectangular slot profiles, which are oriented 
+                along each contour direction and moved into place using vector transforms. Careful list management, 
+                culling, and data matching ensure each slot is paired with the correct contour segment. [file:62]
+            </p>
+        </section>
+
+        <!-- Grasshopper Development & Fabrication -->
+        <section class="section">
+            <h2 class="section-title">Grasshopper Development & Fabrication</h2>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Grasshopper Workflow</h3>
+                    <ul>
+                        <li>Generate two contour sets with adjustable spacing for model resolution.</li>
+                        <li>Use <em>Curve–Curve Intersect</em> components to find all contour intersections. [file:62]</li>
+                        <li>Offset and deconstruct intersection points to build helper lines across each contour thickness.</li>
+                        <li>Compute slot midpoints and move parametric slot geometry to each location. [file:62]</li>
+                        <li>Resolve overhang issues by manually adjusting selected Z‑heights via cull patterns and custom lists.</li>
+                        <li>Join each contour curve and its slots into a single closed profile ready for the laser cutter. [file:62]</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Materials & Equipment</h3>
+                    <ul>
+                        <li><strong>Software:</strong> Rhino 3D + Grasshopper (visual scripting). [file:63]</li>
+                        <li><strong>Material:</strong> Corrugated cardboard sheets sourced from a local art supply store. [file:62]</li>
+                        <li><strong>Laser Cutter:</strong> Epilog 60W, large bed for full contour layouts. [file:63]</li>
+                        <li><strong>Empirical Settings:</strong> 15 speed, 30 power, 50 frequency to achieve clean cuts while minimizing fire risk. [file:62]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <img src="psd-grasshopper.png" alt="Grasshopper script for contour intersections and slot generation" class="section-image">
+            <p class="image-caption">Figure: Final Grasshopper definition for contour intersections, slot placement, and joined cut paths.</p>
+        </section>
+
+        <!-- Tolerancing & Assembly -->
+        <section class="section">
+            <h2 class="section-title">Tolerancing & Assembly</h2>
+
+            <p>
+                A key part of the project was dialing in slot tolerances so the contours would slide together without 
+                being either floppy or impossible to assemble. The slot width started at 5 mm to match nominal cardboard 
+                thickness, but assemblies were too loose and lacked structural rigidity. [file:62]
+            </p>
+            <p>
+                Reducing the width to 3 mm over‑constrained the joints, causing local crushing and making later slices 
+                nearly impossible to install. After several test cuts and assemblies, a 4 mm slot width provided the 
+                right balance of friction fit, rigidity, and assembly effort. [file:62]
+            </p>
+
+            <img src="psd-tolerance-tests.png" alt="Cardboard test coupons showing different slot widths" class="section-image">
+            <p class="image-caption">Figure: Tolerance test coupons comparing 3 mm, 4 mm, and 5 mm slot widths.</p>
+
+            <div class="results-box">
+                <h3>Final Outcome</h3>
+                <ul>
+                    <li>Robust 3D Darth Vader sculpture assembled entirely from 2D contour slices. [file:62]</li>
+                    <li>Parametric Grasshopper definition that can adapt to new models and materials.</li>
+                    <li>Validated laser settings and tolerances for repeatable corrugated‑cardboard builds.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Challenges & Lessons -->
+        <section class="section">
+            <h2 class="section-title">Design Challenges & Key Learnings</h2>
+
+            <div class="lesson-card">
+                <h4>Data Management in Grasshopper</h4>
+                <p>
+                    Matching intersection points, control points, and slot geometry required careful use of cull patterns, 
+                    list operations, and data tree management. When the lists were mis‑aligned, the resulting slot lines 
+                    looked like random scribbles across the model, highlighting how important index discipline is in 
+                    visual scripting. [file:62]
+                </p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Handling Overhangs & Multi‑Level Contours</h4>
+                <p>
+                    Overhanging geometry created cases where a single helper line intersected multiple contours, 
+                    potentially cutting through more than one slice. The solution was to selectively adjust Z‑heights 
+                    for specific intersection points and use cull patterns to target only the intended contour level. [file:62]
+                </p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Empirical Fabrication Knowledge</h4>
+                <p>
+                    The recommended Epilog settings cut the cardboard but frequently ignited small fires, so I 
+                    iterated speed, power, and frequency to find a combination that produced full‑depth cuts without 
+                    damaging the workpiece. That empirical tuning is now baked into the project documentation for 
+                    future builds. [file:62][file:63]
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">Skills Developed</h2>
+
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Parametric Modeling</h4>
+                    <p>
+                        Built a reusable Grasshopper definition for contour generation, slot placement, and automated 
+                        join operations, adaptable to new meshes and materials.
+                    </p>
+                </div>
+                <div class="spec-card">
+                    <h4>Digital Fabrication</h4>
+                    <p>
+                        Translated parametric output into clean laser‑cut parts, including layout, kerf compensation, 
+                        and safe cutting settings for corrugated cardboard.
+                    </p>
+                </div>
+                <div class="spec-card">
+                    <h4>Geometry Processing</h4>
+                    <p>
+                        Worked extensively with intersections, offsets, vector transforms, and data‑tree operations to 
+                        construct manufacturable 2D geometry from 3D models.
+                    </p>
+                </div>
+                <div class="spec-card">
+                    <h4>Design for Assembly</h4>
+                    <p>
+                        Tuned joint tolerances and slot patterns to achieve a stable, self‑supporting structure that can 
+                        be assembled quickly without adhesives.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Izayah Morris. All rights reserved.</p>
+    </footer>
+</body>
+</html>
