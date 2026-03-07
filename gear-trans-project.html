@@ -1,318 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cycloidal Reducer Project | Izayah Morris</title>
-  <style>
-    :root {
-      --color-primary: #E6E6FA;
-      --color-primary-hover: #F0FFF0;
-      --color-secondary: #696969;
-      --color-text: #7FFFD4;
-      --color-text-light: #7FFFD4;
-      --color-bg: #00008B;
-      --color-surface: #000000;
-      --color-border: #000000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycloidal Reducer Trebuchet Project - Izayah Morris</title>
+    <style>
+        :root {
+            --color-primary: #E6E6FA;
+            --color-primary-hover: #F0FFF0;
+            --color-secondary: #696969;
+            --color-text: #7FFFD4;
+            --color-text-light: #7FFFD4;
+            --color-bg: #00008B;
+            --color-surface: #000000;
+            --color-border: #000000;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      color: var(--color-text);
-      background-color: var(--color-bg);
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
 
-    /* Navigation (reuse from home) */
-    nav {
-      background-color: var(--color-surface);
-      border-bottom: 1px solid var(--color-border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        /* Navigation */
+        nav {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .nav-brand {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--color-primary);
-      text-decoration: none;
-    }
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: var(--color-text);
-      transition: color 0.3s ease;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
 
-    .nav-links a:hover {
-      color: var(--color-secondary);
-    }
+        .nav-links a:hover {
+            color: var(--color-secondary);
+        }
 
-    /* Hero for project page */
-    .hero {
-      background-image: url("Screen Shot 2026-03-06 at 1.42.26 AM.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      padding: 6rem 2rem;
-      text-align: center;
-    }
+        /* Back Button */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
 
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        .back-link:hover {
+            color: var(--color-primary);
+        }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
+        /* Project Hero */
+        .project-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
 
-    .hero-subtitle {
-      font-size: 1.25rem;
-      opacity: 0.95;
-      margin-bottom: 2rem;
-    }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .hero-meta {
-      font-size: 0.95rem;
-      opacity: 0.85;
-    }
+        .project-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
 
-    .cta-button {
-      display: inline-block;
-      background-color: #4a4a4a;
-      color: var(--color-primary);
-      padding: 0.75rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: none;
-      cursor: pointer;
-      margin-top: 1.5rem;
-    }
+        .project-meta {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    /* Shared section styles */
-    .page-section {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
+        .tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
 
-    .section-title {
-      font-size: 2.25rem;
-      margin-bottom: 1.5rem;
-      color: var(--color-primary);
-      text-align: left;
-    }
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    .section-card {
-      background-color: var(--color-surface);
-      padding: 2.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--color-border);
-      line-height: 1.8;
-    }
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    .section-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-      color: var(--color-primary);
-    }
+        .section-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 2px solid var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    .section-card ul {
-      margin-left: 1.25rem;
-      margin-top: 0.5rem;
-    }
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
 
-    .section-card li {
-      margin-bottom: 0.4rem;
-    }
+        .section {
+            margin-bottom: 3rem;
+        }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-    }
+        .section-title {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-secondary);
+        }
 
-    .pill {
-      background-color: var(--color-bg);
-      color: var(--color-text-light);
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-    /* Footer */
-    footer {
-      background-color: var(--color-secondary);
-      color: dark gray;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-    }
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.3rem;
-      }
-      .section-card {
-        padding: 1.75rem;
-      }
-    }
-  </style>
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--color-text-light);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .column {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .column h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .spec-card h4 {
+            color: var(--color-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .results-box {
+            background-color: var(--color-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--color-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .results-box h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-card {
+            background-color: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-card h4 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--color-secondary);
+            color: dark grey;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <a href="index.html#home" class="nav-brand">Izayah's Portfolio</a>
-      <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">My Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Back Link -->
+    <div class="container" style="margin-top: 2rem;">
+        <a href="index.html#projects" class="back-link">← Back to Projects</a>
     </div>
-  </nav>
 
-  <!-- Project Hero -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Cycloidal Reducer Trebuchet Project</h1>
-      <p class="hero-subtitle">
-        10:1 3D‑printed cycloidal speed reducer for automated trebuchet reloading
-      </p>
-      <p class="hero-meta">
-        MECH 996 · Gearing & Transmission Design · NEMA 17 · Onshape · PLA FDM
-      </p>
-      <a href="#overview" class="cta-button">Jump to Overview</a>
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="hero-content">
+            <h1>Cycloidal Reducer Trebuchet Project</h1>
+            <p class="project-meta">
+                10:1 3D‑printed cycloidal speed reducer for automated desktop trebuchet reloading
+            </p>
+            <div class="project-tags">
+                <span class="tag">Cycloidal Drives</span>
+                <span class="tag">Gearing & Transmission</span>
+                <span class="tag">Onshape</span>
+                <span class="tag">PLA FDM</span>
+                <span class="tag">Trebuchet Design</span>
+                <span class="tag">Experimental Testing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- HERO IMAGE: reducer + trebuchet -->
+        <img src="IMG_3843 2.JPG" alt="Cycloidal reducer integrated with desktop trebuchet" class="hero-image">
+
+        <!-- Project Overview -->
+        <section class="section">
+            <h2 class="section-title">Project Overview</h2>
+            <p>
+                For my MECH 996 Gearing & Transmission Design final project, I designed, fabricated, 
+                and tested a 10:1 cycloidal speed reducer integrated into a desktop trebuchet to 
+                automate counterweight reloading.
+            </p>
+            <p>
+                A NEMA 17 stepper motor supplies high‑speed, low‑torque input. The cycloidal reducer 
+                trades this speed for torque, enabling reliable lifting of 40–400 g counterweights 
+                while keeping the mechanism compact enough for a tabletop demonstrator.
+            </p>
+            <p>
+                The project combined analytical design of the cycloidal profile, iterative 3D‑printed 
+                prototyping, and experimental torque and range testing of the full trebuchet system.
+            </p>
+        </section>
+
+        <!-- Design & Theory -->
+        <section class="section">
+            <h2 class="section-title">Design Theory & Methodology</h2>
+
+            <h3 class="section-subtitle">Cycloidal Drive Fundamentals</h3>
+            <p>
+                The reducer uses an epitrochoid‑based cycloidal disc rolling against a fixed ring of pins. 
+                With 11 housing pins and 10 lobes on the disc, each full rotation of the eccentric input 
+                advances the disc by one lobe spacing, yielding a 10:1 reduction ratio.
+            </p>
+            <p>
+                Profiles were generated in Onshape using a custom FeatureScript that implements the 
+                parametric cycloid equations, allowing quick iteration on lobe count, eccentricity, 
+                and pin geometry.
+            </p>
+
+            <!-- Optional schematic image -->
+            <img src="cycloid-profile.png" alt="Cycloidal disc and pin housing CAD view" class="section-image">
+            <p class="image-caption">Figure: Cycloidal disc profile and pin housing generated parametrically in Onshape.</p>
+
+            <h3 class="section-subtitle">Design Evolution</h3>
+            <div class="two-column">
+                <div class="column">
+                    <h3>Early Iterations</h3>
+                    <ul>
+                        <li>Phase 1: Large 80 mm base radius design with long print times and excessive material usage.</li>
+                        <li>Phase 2: Scaled‑down housing, but open‑back design allowed axial translation and binding.</li>
+                        <li>Multiple input shaft concepts, including split shafts that were hard to rework between iterations.</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Final Architecture</h3>
+                    <ul>
+                        <li>“Sandwich” assembly with the cycloidal disc constrained between front and back plates.</li>
+                        <li>D‑shaft input directly mates to the NEMA 17 output for better concentricity.</li>
+                        <li>Six output pins drive a winding spool that pulls the trebuchet counterweight via cable.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specs & Implementation -->
+        <section class="section">
+            <h2 class="section-title">Design Specifications & Implementation</h2>
+
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4>Reducer Geometry</h4>
+                    <p><strong>Pins:</strong> <span class="spec-value">11 housing pins</span></p>
+                    <p><strong>Lobes:</strong> <span class="spec-value">10 cycloidal lobes</span></p>
+                    <p><strong>Reduction:</strong> <span class="spec-value">10:1 nominal</span></p>
+                    <p><strong>Eccentricity:</strong> <span class="spec-value">≈1.75 mm</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Motor & Load</h4>
+                    <p><strong>Motor:</strong> <span class="spec-value">NEMA 17 stepper</span></p>
+                    <p><strong>Input Torque:</strong> <span class="spec-value">≈65 N·cm</span></p>
+                    <p><strong>Counterweight:</strong> <span class="spec-value">40–400 g</span></p>
+                    <p><strong>Lever Arm:</strong> <span class="spec-value">27.5 mm</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Manufacturing</h4>
+                    <p><strong>Printer:</strong> <span class="spec-value">Bambu X1 Carbon</span></p>
+                    <p><strong>Material:</strong> <span class="spec-value">PLA</span></p>
+                    <p><strong>Layer Height:</strong> <span class="spec-value">0.15 mm</span></p>
+                    <p><strong>Nozzle:</strong> <span class="spec-value">0.4 mm</span></p>
+                </div>
+
+                <div class="spec-card">
+                    <h4>Trebuchet Integration</h4>
+                    <p><strong>Base Design:</strong> <span class="spec-value">Modified Mihovec desktop trebuchet</span></p>
+                    <p><strong>Reload Mechanism:</strong> <span class="spec-value">Winding spool + guide roller</span></p>
+                    <p><strong>Projectile:</strong> <span class="spec-value">16 mm marble</span></p>
+                    <p><strong>Control:</strong> <span class="spec-value">Arduino‑driven stepper</span></p>
+                </div>
+            </div>
+
+            <!-- Trebuchet integration image -->
+            <img src="trebuchet-assembly.png" alt="Trebuchet assembly with cycloidal reducer mounted" class="section-image">
+            <p class="image-caption">Figure: Final assembly with reducer mounted behind the trebuchet and driving the reloading spool.</p>
+        </section>
+
+        <!-- Testing & Results -->
+        <section class="section">
+            <h2 class="section-title">Experimental Testing & Results</h2>
+
+            <h3 class="section-subtitle">Reducer Torque Testing</h3>
+            <p>
+                To quantify reducer performance, I built a dedicated test stand that fixed the housing 
+                and attached a 200 mm torque arm to the output. A digital scale at the arm tip measured 
+                force while the NEMA 17 drove the input at 500–1000 rpm.
+            </p>
+
+            <div class="results-box">
+                <h3>Measured Torque & Efficiency</h3>
+                <ul>
+                    <li>Theoretical output torque: ≈650 N·cm (65 N·cm × 10).</li>
+                    <li>Measured output torque: ≈97.5 N·cm at slip onset.</li>
+                    <li>Resulting reducer efficiency: ≈15% under load.</li>
+                    <li>Best performance achieved with 0.65 mm clearance between disc lobes and pins.</li>
+                </ul>
+            </div>
+
+            <h3 class="section-subtitle">Trebuchet Launch Testing</h3>
+            <p>
+                After integrating the reducer, I evaluated full system performance by measuring 
+                launch distance for counterweights from 40 g to 400 g.
+            </p>
+            <ul>
+                <li>Launch ranges spanned roughly 7–38 in as counterweight increased.</li>
+                <li>An energy‑balance model fit to the data indicated ≈50% overall system efficiency from counterweight potential energy to projectile kinetic energy.</li>
+                <li>Range gains plateaued beyond ~200 g, showing diminishing returns with heavier counterweights.</li>
+            </ul>
+        </section>
+
+        <!-- Challenges & Lessons -->
+        <section class="section">
+            <h2 class="section-title">Design Challenges & Key Learnings</h2>
+
+            <div class="lesson-card">
+                <h4>Material Compliance & Efficiency Gap</h4>
+                <p>
+                    The ≈15% measured reducer efficiency was far below the 85–95% range reported for metal cycloidal drives. 
+                    PLA’s low modulus allowed the disc and housing to deflect under load, shifting contact from pure rolling 
+                    to partial sliding and dramatically increasing losses.
+                </p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Friction & Directional Behavior</h4>
+                <p>
+                    3D‑printed layer lines introduced anisotropic surface roughness. The reducer ran smoothly in the 
+                    forward direction but exhibited audible catching and no sustained torque in reverse, indicating 
+                    directional friction tied to layer orientation.
+                </p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Importance of Axial Constraint</h4>
+                <p>
+                    Early open‑back designs allowed the disc to translate under load and bind. The final “sandwich” housing 
+                    highlighted how critical axial constraint is for maintaining proper cycloidal engagement and avoiding 
+                    catastrophic jamming.
+                </p>
+            </div>
+
+            <div class="lesson-card">
+                <h4>Rapid Prototyping Trade‑offs</h4>
+                <p>
+                    PLA FDM enabled over 50 design–print–test cycles in about four weeks, which was invaluable for learning. 
+                    The trade‑off was reduced stiffness and surface quality compared to machined metal components, limiting 
+                    achievable efficiency.
+                </p>
+            </div>
+        </section>
+
+        <!-- Future Work & Skills -->
+        <section class="section">
+            <h2 class="section-title">Future Work & Skills Developed</h2>
+
+            <div class="two-column">
+                <div class="column">
+                    <h3>Future Improvements</h3>
+                    <ul>
+                        <li>Reprint critical components in Nylon or carbon‑fiber‑reinforced nylon for higher stiffness.</li>
+                        <li>Replace fixed output pins with rolling elements or bearings to promote true rolling contact.</li>
+                        <li>Add lubrication or surface treatments to reduce plastic‑on‑plastic friction.</li>
+                        <li>Refine tolerances and consider randomized layer start positions to reduce directional artifacts.</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Parametric cycloidal drive design and gearing analysis.</li>
+                        <li>Onshape FeatureScript for automated profile generation.</li>
+                        <li>FDM design for manufacture, tolerancing, and assembly.</li>
+                        <li>Experimental torque and range testing with custom fixtures.</li>
+                        <li>System‑level efficiency analysis and loss breakdown.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </div>
-  </header>
 
-  <!-- Overview -->
-  <section id="overview" class="page-section">
-    <h2 class="section-title">Project Overview</h2>
-    <div class="section-card">
-      <p>
-        This project applied cycloidal speed reducer theory to a practical system:
-        a desktop trebuchet that automatically reloads its counterweight using a
-        compact 10:1 transmission.
-      </p>
-      <p style="margin-top:1rem;">
-        A NEMA 17 stepper motor provides high‑speed, low‑torque input. The
-        cycloidal reducer trades speed for torque, enabling reliable lifting of
-        40–400 g counterweights while keeping the mechanism small enough for a
-        tabletop demonstration.
-      </p>
-
-      <div class="pill-row">
-        <span class="pill">Cycloidal drive</span>
-        <span class="pill">10:1 reduction</span>
-        <span class="pill">Trebuchet reloading</span>
-        <span class="pill">Onshape FeatureScript</span>
-        <span class="pill">PLA FDM</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Design Section -->
-  <section class="page-section">
-    <h2 class="section-title">Design & Implementation</h2>
-    <div class="section-card">
-      <h3>Transmission Design</h3>
-      <ul>
-        <li>Generated cycloidal profiles from epicycloid equations using a custom FeatureScript.</li>
-        <li>Selected 11 fixed pins and 10 lobes to achieve a 10:1 reduction ratio.</li>
-        <li>Iterated from an open housing to a fully constrained “sandwich” architecture to control axial motion.</li>
-      </ul>
-
-      <h3 style="margin-top:1.5rem;">Trebuchet Integration</h3>
-      <ul>
-        <li>Coupled the reducer output to a reloading spool driving the counterweight via cable.</li>
-        <li>Modified an existing desktop trebuchet design with a locking hook, guide roller, and optimized counterweight basket.</li>
-        <li>Controlled the NEMA 17 via Arduino for repeatable reloading cycles and test conditions.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Testing & Results -->
-  <section class="page-section">
-    <h2 class="section-title">Testing & Results</h2>
-    <div class="section-card">
-      <h3>Reducer Performance</h3>
-      <ul>
-        <li>Built a dedicated test stand with a 200 mm torque arm and digital scale to measure output torque.</li>
-        <li>Measured ≈97.5 N·cm at the output versus 650 N·cm theoretical, corresponding to ≈15% mechanical efficiency.</li>
-        <li>Ran a clearance study on multiple cycloid discs; a 0.65 mm pin clearance gave the best balance of smooth motion and torque capacity.</li>
-      </ul>
-
-      <h3 style="margin-top:1.5rem;">Trebuchet Launch Testing</h3>
-      <ul>
-        <li>Tested counterweights from 40–400 g with a 16 mm marble projectile on a desktop range.</li>
-        <li>Recorded launch distances from roughly 7–38 in and fit an energy model to the data.</li>
-        <li>Back‑calculated an overall system efficiency of ≈50% from counterweight energy to projectile kinetic energy.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Key Learnings -->
-  <section class="page-section">
-    <h2 class="section-title">Key Learnings & Future Work</h2>
-    <div class="section-card">
-      <h3>What I Learned</h3>
-      <ul>
-        <li>Material stiffness and manufacturing tolerances dominate real‑world efficiency in precision transmissions.</li>
-        <li>Axial constraint is critical in cycloidal drives; small misalignments can cause binding and severe losses.</li>
-        <li>3D‑printing artifacts can introduce directional friction, leading to asymmetric behavior in forward vs. reverse rotation.</li>
-        <li>Rapid PLA prototyping enables many design–build–test cycles, at the cost of ultimate mechanical performance.</li>
-      </ul>
-
-      <h3 style="margin-top:1.5rem;">Next Steps</h3>
-      <ul>
-        <li>Rebuild critical components in stiffer polymers such as nylon or carbon‑fiber‑reinforced nylon.</li>
-        <li>Add rolling pins and bearings to promote true rolling contact between lobes and pins.</li>
-        <li>Apply lubrication or surface treatments and refine tolerances to close the gap to theoretical efficiency.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Izayah Morris. All rights reserved.</p>
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Izayah Morris. All rights reserved.</p>
+    </footer>
 </body>
 </html>
