@@ -640,6 +640,24 @@
 <!-- Static Stiffnes Testing Section -->
         <section class="section">
             <h2 class="section-title">Static Stiffness Analysis</h2>
+
+<!-- Images of A25 Hz mechanism being displaced -->
+
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="static-disp1.png" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image"
+                        style="width: 280px; height: 380px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        <p class="image-caption" style="max-width: 280px; text-align: center;">
+                            Figure 1: A25 Undisplaced Mechanism</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                     <img src="static-disp2.png" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image"
+                        style="width: 280px; height: 380px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        <p class="image-caption" style="max-width: 280px; text-align: center;">
+                            Figure 2: A25 Displaced Mechanism (3450kg)</p>
+                </div>
+            </div>
+            
             <p>This phase of testing characterized the static force-displacement behavior of each mechanism.</p>
             <ul>
                 <li><strong>Static Load Testing:</strong> Apply incrementally increasing force to the magnet end effector </li>
@@ -648,6 +666,18 @@
                 <li><strong>Stiffness Extraction:</strong> Calculate k = ΔF/Δx from linear region of F-D curves</li>
                 <li><strong>Model Refinement:</strong> Compare measured stiffness with analytical predictions to validate/refine PRBM approach</li>
             </ul>
+            <h3 class="section-subtitle">Testing Procedures</h3>
+            <p>Each mechanism variant was tested using the following protocol: </p>
+            <ol>
+                <li>Glue piece of paper with dashed lines to mount for visualizing displacement</li>
+                <li>Mount mechanism upside down to 3D printed stand with PLA cord attached to mechanism</li>
+                <li>Setup c270 30fps pre-calibrated cameras for image capturing </li>
+                <li>Mount weights on cord attachd to mechanism ranging from 550kg to 3900kg and capture displacement </li>
+                <li>Record data of displacements and forces applied in MATLAB </li>
+                <li>Repeat for mechanisms A35 - 60 and plot data in MATLAB </li>
+                <li>Calculate k = ∆F/∆x for each mechanism and compare</li>
+            </ol>
+            <h3 class="section-subtitle">Results Yielded</h3>
             
         </section>
 
