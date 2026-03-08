@@ -326,17 +326,14 @@
                 <div style="flex: 1; min-width: 250px; max-width: 475px; display: flex; flex-direction: column; align-items: center;">
                     <img src="generated-vader-contours.png"
                          style="width: 80%; height: 500px; object-fit: cover; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">Final Laser‑Cut Assembly</p>
+                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">Original Mesh for Contours</p>
                 </div>
                 <div style="flex: 1; min-width: 250px; max-width: 475px; display: flex; flex-direction: column; align-items: center;">
                     <img src="psd-contours.png"
                          style="width: 80%; height: 500px; object-fit: cover; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">Original 3D Model for Reference</p>
+                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">Intersection Points of Contours</p>
                 </div>
             </div>
-            
-            
-            <p class="image-caption">Figure: Orthogonal contour sets generated from the Darth Vader model.</p>
             <h3 class="section-subtitle">Intersection Logic & Slot Placement</h3>
             <p>A custom Grasshopper definition locates all intersections between the orthogonal contour sets, then uses those points to position and size the slots where slices will interlock. Intersection points are offset and reconstructed so that helper lines can find a second intersection on the opposite contour edge, giving a local thickness for the joint.</p>
             <p>Midpoints along these helper lines become the centers of rectangular slot profiles, which are oriented along each contour direction and moved into place using vector transforms. Careful list management, culling, and data matching ensure each slot is paired with the correct contour segment.</p>
