@@ -560,7 +560,9 @@
 
             <h3 class="section-subtitle">Drag Force Testing</h3>
             <p>Drag force measurements were conducted using a Vernier dual-range force sensor (0.01-50N range) with LabQuest data acquisition interface. Testing objects included a golf ball and a 3D-printed sphere to validate theoretical drag coefficient models.</p>
-
+    <!-- Possible Image for Testing Setup ?? -->
+            
+             
             <p><strong>Theoretical Drag Force Equation:</strong> F<sub>D</sub> = ½ ρv²C<sub>D</sub>A</p>
             <ul>
                 <li>ρ = Air density (1.204 kg/m³)</li>
@@ -569,6 +571,21 @@
                 <li>A = Cross-sectional area (1.43 × 10⁻³ m²)</li>
             </ul>
 
+    <!-- Testing Data Analytical vs Theoretical -->
+           <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="Experimental-Data-GB.png"
+                         style="width: 900px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                        <p class="image-caption">Figure 1: Golfball Experimental Data</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="Experimental-Data-3dSp.png"
+                         style="width: 900px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                        <p class="image-caption">Figure 2: 3D-Sphere Experimental Data</p>
+                </div>
+            </div> 
+            
+            
             <div class="results-box">
                 <h3>Testing Results</h3>
                 <p><strong>Golf Ball:</strong> Experimental data showed an average error of 21% compared to theoretical values after curve fitting. Second-order polynomial regression achieved R² = 0.984, demonstrating excellent agreement. Dimples on the golf ball induced turbulence, resulting in lower drag forces at higher velocities compared to smooth sphere models.</p>
