@@ -400,7 +400,7 @@
 
         <!-- HERO IMAGE LOCATION #1: Right after hero section -->
         <img src="EMEH-Assembly.png" alt="" class="hero-image"
-            style="width: 1000px; height: 700px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            style="width: 1000px; height: 1000px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
         <p class="image-caption">Figure: Assembly of EMEH Apparatus</p>
 
         <!-- Project Overview -->
@@ -421,7 +421,7 @@
 
             <!-- IMAGE LOCATION #2: After PRBM explanation -->
             <img src="mechanism-prbm.png" alt="Pseudo Rigid Body Model schematic showing beam elements and spring connections" class="section-image"
-                style="width: 900px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                style="width: 900px; height: 700px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
             <p class="image-caption">Figure: PRBM schematic showing rigid links and torsional spring elements</p>
 
             <h3 class="section-subtitle">Analytical Stiffness Development</h3>
@@ -539,8 +539,13 @@
             </table>
 
             <!-- IMAGE LOCATION #5: All fabricated mechanisms laid out together -->
-            <img src="IMG_3939.JPG" alt="Five compliant mechanisms with different frequencies displayed together showing size variations" class="section-image">
-            <p class="image-caption">Figure: All five frequency-tuned mechanism variants showing geometric scaling differences</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="IMG_3939.JPG" class="section-image"
+                        style="width: 1000px; height: 850px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                    <p class="image-caption">Figure: All five frequency-tuned mechanism variants showing geometric scaling differences</p>
+                </div>
+            </div>
 
             <div class="results-box">
                 <h3>Key Observation</h3>
@@ -685,13 +690,13 @@
             <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="F-D-Curves.png" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image"
-                        style="width: 500px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        style="width: 400px; height: 400px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
                         <p class="image-caption" style="max-width: 280px; text-align: center;">
                             Figure 1: Force vs. Displacement Curves for each Mechanism</p>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: center;">
                      <img src="Stiffness-Results.png" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image"
-                        style="width: 500px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        style="width: 400px; height: 400px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
                         <p class="image-caption" style="max-width: 280px; text-align: center;">
                             Figure 2: Experimentally found Stiffness Values for each Mechanism</p>
                 </div>
