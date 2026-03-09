@@ -622,7 +622,7 @@
             </ol>
 
             <h3 class="section-subtitle">Current Testing Results</h3>
-            <p>Dynamic frequency testing has been completed for all six mechanisms. Results show consistent ~10 Hz deviation (lower than predicted) for most mechanisms, except the 80 Hz variant which achieved near-perfect correlation. The systematic offset suggests:</p>
+            <p>Dynamic frequency testing has been completed for four mechanisms. Results show consistent ~10 Hz deviation (lower than predicted) for most mechanisms, except the 80 Hz variant which achieved near-perfect correlation. The systematic offset suggests:</p>
             <ul>
                 <li>Possible underestimation of damping effects in the analytical model</li>
                 <li>Effective mass greater than calculated (possibly due to mounting structure)</li>
@@ -734,7 +734,138 @@
                     </tr>
                 </tbody>
             </table>
+<!-- Static Results Discussion -->
+            <h3 class="section-subtitle">Final Results Discussion</h3>
+            <p> Observing the figures above for the Static Loading Testing it can be seen that the mechanisms follow a linear trend with each of the 
+            respective mechanisms having greater stiffness's as the PRB model predicted. This shows agreeance between the experimental data and the analytical 
+            predictions originally used for manufacturing the devices.</p>
+        </section>
+
+<!-- Damping Coefficient & Energy Capture Section -->
+        <section class="section">
+            <h2 class="section-title">Damping Coefficient & Energy Capture</h2>
+        
+            <!-- Damping Coefficient -->
+            <h3 class="section-subtitle">Damping Coefficient</h3>
+            <p>
+                The electrical damping coefficient was determined using a Data Acquisition (DAQ) system — 
+                specifically the NI‑USB 6001 DAQ produced by National Instruments. The DAQ served as the 
+                motherboard component and required fabrication of a case and a breakout board for data capture, 
+                both 3D printed in-house, with a 34‑pin connector breadboard and ribbon sourced online.
+            </p>
+            <p>
+                Once assembled, the DAQ was connected to the breakout board and then to a rectifier. The 
+                NI‑MAX interface was used to detect the DAQ and configure an analog voltage testing session. 
+                To find the damping coefficient, the system was manually displaced and released while a 
+                specified number of voltage samples were captured, recording the peaks and valleys of the 
+                voltage induced as the permanent magnet oscillated through the coil.
+            </p>
+        
+            <!-- IMAGE PLACEHOLDER 1: DAQ setup / NI-MAX screenshot -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
+                <img src="DAQ-setup.JPG"
+                     alt="DAQ testing setup"
+                     style="width: 600px; height: auto; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                <p class="image-caption" style="max-width: 600px;">Figure: DAQ system setup for voltage data capture.</p>
+            </div>
+        
+            <p>
+                Four separate collection runs were taken for the coil voltage, and the peaks and valleys of 
+                each were recorded. These were entered into MATLAB and processed using the built-in log 
+                decrement function to determine the damping ratio. Values across all four runs were averaged, 
+                then the damping ratio was calculated using the equations:
+            </p>
+        
+            <!-- Equations -->
+            <div class="results-box">
+                <h3>Log Decrement & Damping Ratio</h3>
+                <p style="font-family: 'Georgia', serif; font-size: 1.05rem; margin-bottom: 0.5rem;">
+                    δ = ln(x<sub>n</sub> / x<sub>n+1</sub>) = ζω<sub>n</sub>T = 2πζ / √(1 − ζ²) &nbsp;&nbsp;&nbsp; <em>(Eq. 72)</em>
+                </p>
+                <p>
+                    where δ is the log decrement for successive peaks/valleys and ζ is the damping ratio. 
+                    Rearranging for ζ and assuming lightly damped conditions:
+                </p>
+                <p style="font-family: 'Georgia', serif; font-size: 1.05rem;">
+                    ζ = δ / √(4π² + δ²) ≈ δ / 2π &nbsp;&nbsp;&nbsp; <em>(assumed lightly damped, Eq. 73)</em>
+                </p>
+            </div>
+        
+            <p>
+                Using these equations with the given parameters for the stiffness of the specific mechanism 
+                and mass of the system, the log decrement, damping ratio, and damping coefficient of the 
+                analytically predicted 25 Hz mechanism were calculated.
+            </p>
+        
+    <!-- IMAGE PLACEHOLDER 2: Terminal output showing log-dec, damping ratio, damping coefficient results -->
+    <!-- 1st Row -->
+            <div style="display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="DAQ_Vind1.png" class="section-image"
+                        style="width: 500px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        <p class="image-caption" style="max-width: 280px; text-align: center;">
+                            Figure 1: Induced Voltage from Manual Displacement Test 1</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                     <img src="DAQ_Vind2.png" alt="Complete testing setup with Arduino, Hall Effect sensor, 3D printed mount, and oscillating mechanism" class="section-image"
+                        style="width: 500px; height: 500px; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);";>
+                        <p class="image-caption" style="max-width: 280px; text-align: center;">
+                            Figure 2: Induced Voltage from Manual Displacement Test 2</p>
+                </div>
+            </div>
+
+      <!-- 2nd Row -->      
+            <div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="DAQ_Vind3.png"
+                         style="width: 500px; height: auto; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                    <p class="image-caption" style="max-width: 280px;">
+                        Figure 3: Induced Voltage from Manual Displacement Test 3</p>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="Damping-Results.png"
+                         style="width: 500px; height: auto; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                    <p class="image-caption" style="max-width: 280px;">
+                        Figure 4: MATLAB results showing log-dec avg = 0.6460, damping ratio ζ avg = 0.1028, damping coefficient = 50.6256.</p>
+                </div>               
             
+            <div class="results-box">
+                <h3>Damping Testing Results</h3>
+                <ul>
+                    <li>Log-decrement average: <strong>0.6460</strong></li>
+                    <li>Damping ratio ζ average: <strong>0.1028</strong></li>
+                    <li>Damping coefficient: <strong>50.63 Ns/m</strong></li>
+                    <li>System stiffness: <strong>2806.11 N/m</strong></li>
+                    <li>System mass: <strong>46.3 g</strong></li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    The average damping ratio of 0.103, paired with the system stiffness (2806.11 N/m) and 
+                    mass (46.3 g), yielded a damping coefficient of 50.63 Ns/m — representing the rate at 
+                    which the system dissipates energy through decay of oscillations.
+                </p>
+            </div>
+        
+            <!-- Energy Capture -->
+            <h3 class="section-subtitle">Energy Capture</h3>
+            <p>
+                <!-- ADD YOUR ENERGY CAPTURE TEXT HERE based on the next pages of your thesis -->
+            </p>
+        
+            <!-- IMAGE PLACEHOLDER 3: Cell voltage from displacement test graph -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
+                <img src="YOUR-CELL-VOLTAGE-GRAPH.png"
+                     alt="Cell voltage from displacement test"
+                     style="width: 650px; height: auto; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                <p class="image-caption" style="max-width: 650px;">Figure: Cell voltage from displacement test — peaks and valleys used as data points for damping coefficient calculation.</p>
+            </div>
+        
+            <!-- IMAGE PLACEHOLDER 4: Add any additional energy capture graphs here -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin: 2rem 0;">
+                <img src="YOUR-ENERGY-CAPTURE-GRAPH.png"
+                     alt="Energy capture results"
+                     style="width: 650px; height: auto; border-radius: 12px; border: 2px solid var(--color-secondary); box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                <p class="image-caption" style="max-width: 650px;">Figure: [Add your energy capture graph caption here].</p>
+            </div>      
         </section>
 
         <!-- Design Parameters -->
